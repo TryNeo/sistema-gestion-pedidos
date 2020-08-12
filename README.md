@@ -21,11 +21,18 @@ recomendacion crear el entorno virtual fuera del projecto
 
 ## Activacion del entorno virtual
 
-rediriguirse al entorno
+rediriguirse al entorno virutal donde fue creado
 
 **WINDOWS**
 ```bash
->> cd Documentos    source env-python/bin/active
->> cd nombredelentorno
->>
+c:\Desktop>cd nombredelentorno\Scripts
+c:\Desktop\nombredelentorno\Scripts>activate
+(nombredelentorno) c:\Desktop\nombredelentorno\Scripts> y eso es todo
+```
+## Instalacion de los requirimeintos
+
+hay que instalar las librerias que se usa en el projecto, una vez tengamos el entorno virutal activado
+
+```bash
+(nombredelentorno) c:\Desktop\SistemaGestionPedidos>pip install -r requirements.txt
 ```
