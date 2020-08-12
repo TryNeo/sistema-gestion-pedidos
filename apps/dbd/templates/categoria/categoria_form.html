@@ -1,0 +1,45 @@
+{% load widget_tweaks %}
+<div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:categoria_new' %}">
+            {% csrf_token %}
+            <div class="modal-header">
+                <h5 class="modal-title" >{{titulo}}</h5>
+            </div>
+            <div class="modal-body">
+                <div class="card-body ">
+                    <div class="form-group row">
+                        <label class="col-3 col-lg-2 col-form-label text-right">{{form.nombre.label}}</label>
+                        <div class="col-9 col-lg-10">
+                            {{form.nombre}}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-3 col-lg-2 col-form-label text-right">{{form.descripcion.label}}</label>
+                        <div class="col-9 col-lg-10">
+                        {{form.descripcion|attr:'rows:3'}}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-3 col-lg-2 col-form-label text-right">{{form.estado.label}}</label>
+                        <div  class="col-9 col-lg-10">
+                            {{form.estado}}
+                        </div>
+                    </div>
+                </div>
+            </div>             
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info">
+                        <i class="fas fa-save"></i> 
+                        Guardar Registro
+                </button>                    
+                <button type="button" class="btn btn-danger" onclick="return cerrar_modal()">
+                        <i class=" fas fa-exclamation-circle"></i> Cancelar
+                </button>                          
+            </div>
+        </form>
+    </div>
+</div>
+
