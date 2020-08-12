@@ -1,7 +1,11 @@
 {% load widget_tweaks %}
 <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
+        {% if obj %}
+        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:categoria_edit' obj.pk %}">
+        {% else %}
         <form method="POST" role="form" class="form-inline" action="{% url 'dbd:categoria_new' %}">
+        {% endif %}
             {% csrf_token %}
             <div class="modal-header">
                 <h5 class="modal-title" >{{titulo}}</h5>

@@ -73,4 +73,3 @@ apps/dbd/views/dashboard/__pycache__
 apps/lhp/__pycache__
 apps/lhp/migrations/__pycache__
 templates/dashboard-influencer.html
-apps/dbd/migrations/0001_initial.py

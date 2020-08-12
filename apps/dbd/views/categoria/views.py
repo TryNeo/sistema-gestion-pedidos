@@ -1,4 +1,5 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
+from django.shortcuts import render,redirect
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -26,6 +27,7 @@ class CategoriaListView(ListView):
 class CategoriaCreateView(CreateView):
     model = Categoria
     form_class = CategoriaForm
+    context_object_name = 'obj'
     template_name = "categoria/categoria_form.html"
     success_url = reverse_lazy('dbd:categoria_list')
 
@@ -40,4 +42,49 @@ class CategoriaCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Creación de Categoria'
+        return context
+
+
+class CategoriaUpdateView(UpdateView):
+    model = Categoria
+    form_class = CategoriaForm
+    context_object_name = 'obj'
+    template_name = "categoria/categoria_form.html"
+    success_url = reverse_lazy('dbd:categoria_list')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.usuario_crea =  self.request.user
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Edicion de Categoria'
+        return context
+
+class CategoriaDeleteView(DeleteView):
+    model = Categoria
+    context_object_name = 'obj'
+    template_name = "categoria/categoria_delete.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.usuario_crea =  self.request.user
+        return super().form_valid(form)
+
+    def post(self,request,pk,*args, **kwargs):
+        categoria = Categoria.objects.get(id_categoria=pk)
+        categoria.estado = False
+        categoria.save()
+        return redirect('dbd:categoria_list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Eliminacion de Categoria'
         return context
