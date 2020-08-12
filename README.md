@@ -1,4 +1,4 @@
-# Sistema Gestion de Pedidos 
+# Sistema Gestion de Pedidos -- En Progreso
 Projecto Reto - [3/A]
 
 # Entorno Virutal
@@ -29,10 +29,25 @@ c:\Desktop>cd nombredelentorno\Scripts
 c:\Desktop\nombredelentorno\Scripts>activate
 (nombredelentorno) c:\Desktop\nombredelentorno\Scripts> y eso es todo
 ```
-## Instalacion de los requirimeintos
+## Instalacion de los requirimientos
 
 hay que instalar las librerias que se usa en el projecto, una vez tengamos el entorno virutal activado
 
 ```bash
 (nombredelentorno) c:\Desktop\SistemaGestionPedidos>pip install -r requirements.txt
 ```
+## Instalacion de la base de datos el projecto
+
+crea una base de datos y luego modifica [DATABASES](https://github.com/TryNeo/sistema-gestion-pedidos/blob/master/SistemaGestionPedidos/settings.py)
+para que se conecte a ese bd y a tu configuracion 
+```bash
+create database bd_gestion;
+```
+
+## Migracion de las tablas al BD del projecto
+```bash
+>>python manage.py makemigrations
+>>python manage.py migrate
+>>python manage.py runserver
+```
+
