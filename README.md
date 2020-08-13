@@ -1,6 +1,8 @@
 # Sistema Gestion de Pedidos -- En Progreso
 Projecto Reto - [3/A]
 
+![Alt text](https://i.imgur.com/zTVAx2u.png)
+
 # Entorno Virutal
 
 Deberas tener la version de python 3.6.9 hasta la 3.7 solo en esas versiones e estable el projecto
