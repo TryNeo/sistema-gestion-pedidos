@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-        <a href="#" onclick="return abrir_modal('{% url 'dbd:categoria_new' %}')" class="btn btn-outline-secondary">Agregar Categoria</a>        
+        <a href="#" onclick="return abrir_modal('{% url 'dbd:proveedor_new' %}')"  class="btn btn-outline-secondary">Agregar Proveedor</a>        
     </div>
 </div>
 <hr>
@@ -55,29 +55,31 @@
               <table id="dataTable" class="table table-striped" style="width:100%">
                   <thead>
                     <th>ID</th>
-                    <th>Categoria</th>
-                    <th>descripcion</th>
-                    <th>Fecha.C</th>
-                    <th>Fecha.M</th>
+                    <th>Proveedor</th>
+                    <th>Ruc</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
                     <th>Estado</th>
                     <th class="all">Opciones</th>
                   </thead>
                   <tbody>
-                  {% for cate in categoria_l %}
+                  {% for pro in proveedor_l %}
                     <tr>
-                      <td>{{cate.id_categoria}}</td>
-                      <td>{{cate.nombre}}</td>
-                      <td>{{cate.descripcion}}</td>
-                      <td>{{cate.fecha_crea|date}}</td>
-                      <td>{{cate.fecha_modifica|date}}</td>
-                      <td>{% if cate.estado %}
+                      <td>{{pro.id_proveedor}}</td>
+                      <td>{{pro.nombre}}</td>
+                      <td>{{pro.ruc}}</td>
+                      <td>{{pro.correo}}</td>
+                      <td>{{pro.direccion}}</td>
+                      <td>{{pro.telefono}}</td>
+                      <td>{% if pro.estado %}
                       <span class="label label-success">Activo</span>
                       {% else %}
                       <span class="label label-danger">Inactivo</span>
                       {% endif %} </td>
                         <td>
-                            <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:categoria_edit' cate.id_categoria %}')" ><i class="far fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle"  onclick="return abrir_modal('{% url 'dbd:categoria_delete' cate.id_categoria %}')" ><i class="far fa-thumbs-down"></i></button>
+                            <button type="button" class="btn btn-info btn-circle"   ><i class="far fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger btn-circle"  ><i class="far fa-thumbs-down"></i></button>
                         </td>
                     </tr>
                   {% endfor %}
@@ -96,6 +98,6 @@
 
 $(document).ready(function() {
     $('#dataTable').DataTable(
-} );
+});
 </script>
 {% endblock extra_js %}

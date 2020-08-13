@@ -84,6 +84,12 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="#"><i class="fas fa-user"></i>Clientes</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link {% if request.path == '/dashboard/proveedor/' %}active{% endif %} " href="{% url 'dbd:proveedor_list' %}"><i class="fas fa-users"></i>Proveedores</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
