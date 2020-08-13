@@ -23,3 +23,5 @@ apps/lhp/__pycache__
 apps/lhp/migrations/__pycache__
 templates/dashboard-influencer.html
 apps/dbd/migrations
+apps/dbd/views/proveedor/__pycache__
+apps/dbd/forms/proveedor/__pycache__
