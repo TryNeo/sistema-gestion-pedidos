@@ -25,3 +25,6 @@ templates/dashboard-influencer.html
 apps/dbd/migrations
 apps/dbd/views/proveedor/__pycache__
 apps/dbd/forms/proveedor/__pycache__
+apps/dbd/forms/proveedor/__pycache__
+apps/dbd/forms/proveedor/__pycache__/proveedor_form.cpython-36.pyc
+apps/dbd/views/proveedor/__pycache__/views.cpython-36.pyc

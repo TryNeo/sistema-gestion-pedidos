@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
 from apps.dbd.modelos.estructura_model_proveedor import Proveedor
-from apps.dbd.forms.proveedor.proveedor_form import ProveedorForm
+from apps.dbd.forms.proveedor.proveedor_form import ProveedorForm,ConsultaProveedorForm
 
 
 class ProveedorListView(ListView):
@@ -42,4 +42,41 @@ class ProveedorCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Creación de Proveedor'
+        return context
+
+
+class ProveedorUpdateView(UpdateView):
+    model = Proveedor
+    form_class = ProveedorForm
+    context_object_name = 'obj'
+    template_name = "proveedor/proveedor_form.html"
+    success_url = reverse_lazy('dbd:proveedor_list')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.usuario_crea =  self.request.user
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Edicion de Proveedor'
+        return context
+
+class ProveedorConsultView(UpdateView):
+    model = Proveedor
+    form_class = ConsultaProveedorForm
+    context_object_name = 'obja'
+    template_name = "proveedor/proveedor_form.html"
+    success_url = reverse_lazy('dbd:proveedor_list')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Consulta de Proveedor'
         return context

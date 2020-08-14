@@ -14,5 +14,7 @@ urlpatterns = [
     #-----------------------PROVEEDOR---------------------------------# 
     path('proveedor/',ProveedorListView.as_view(),name="proveedor_list"),
     path('proveedor/new/',ProveedorCreateView.as_view(),name="proveedor_new"),
+    path('proveedor/edit/<int:pk>',ProveedorUpdateView.as_view(),name="proveedor_edit"),
+    path('proveedor/consult/<int:pk>',ProveedorConsultView.as_view(),name="proveedor_consult"),
 
 ]

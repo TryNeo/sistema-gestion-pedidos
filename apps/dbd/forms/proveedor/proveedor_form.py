@@ -30,7 +30,7 @@ class ProveedorForm(forms.ModelForm):
             'nombre':'Proveedor:',
             'ruc': 'RUC:',
             'descripcion':'Descripcion:',
-            'correo':'Correo Electronico:',
+            'correo':'Correo:',
             'telefono':'Telefono:',
             'direccion':'Direccion:',
             'codigo_postal':'Codigo Postal:',
@@ -48,3 +48,54 @@ class ProveedorForm(forms.ModelForm):
                 }
             ),
         }
+
+
+class ConsultaProveedorForm(forms.ModelForm):
+    class Meta:
+        model = Proveedor
+        fields = [
+            'nombre',
+            'ruc',
+            'descripcion',
+            'correo',
+            'telefono',
+            'direccion',
+            'codigo_postal',
+            'pais',
+            'provincia',
+            'ciudad',
+            'estado']
+
+        labels = {
+            'nombre':'Proveedor:',
+            'ruc': 'RUC:',
+            'descripcion':'Descripcion:',
+            'correo':'Correo:',
+            'telefono':'Telefono:',
+            'direccion':'Direccion:',
+            'codigo_postal':'Codigo Postal:',
+            'pais':'Pais:',
+            'provincia':'Provincia:',
+            'ciudad':'Ciudad:',
+            'estado':"Estado:"
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update(
+                {
+                    'class':'form-control'
+                }
+            )
+        self.fields['nombre'].widget.attrs['readonly'] = True
+        self.fields['ruc'].widget.attrs['readonly'] = True
+        self.fields['correo'].widget.attrs['readonly'] = True
+        self.fields['telefono'].widget.attrs['readonly'] = True
+        self.fields['descripcion'].widget.attrs['readonly'] = True
+        self.fields['direccion'].widget.attrs['readonly'] = True
+        self.fields['codigo_postal'].widget.attrs['readonly'] = True
+        self.fields['pais'].widget.attrs['readonly'] = True
+        self.fields['provincia'].widget.attrs['readonly'] = True
+        self.fields['ciudad'].widget.attrs['readonly'] = True
+        self.fields['estado'].widget.attrs['disabled'] = 'disabled'
