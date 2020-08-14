@@ -2,7 +2,10 @@ from django.urls import path
 from apps.dbd.views.dashboard.views import *
 from apps.dbd.views.categoria.views import *
 from apps.dbd.views.proveedor.views import *
+from apps.dbd.views.usuarios.views import *
+
 urlpatterns = [
+    #----------------------LOGIN-------------------------------------#
     path('', DashboardView.as_view(), name='dashboard'),
 
     #-----------------------CATEGORIA---------------------------------# 
@@ -15,6 +18,10 @@ urlpatterns = [
     path('proveedor/',ProveedorListView.as_view(),name="proveedor_list"),
     path('proveedor/new/',ProveedorCreateView.as_view(),name="proveedor_new"),
     path('proveedor/edit/<int:pk>',ProveedorUpdateView.as_view(),name="proveedor_edit"),
+    path('proveedor/delete/<int:pk>',ProveedorDeleteView.as_view(),name="proveedor_delete"),
     path('proveedor/consult/<int:pk>',ProveedorConsultView.as_view(),name="proveedor_consult"),
 
+
+    #----------------------SEGURIDAD------------------------------------#
+    path('usuarios/',UserListView.as_view(),name="usuarios_list"),
 ]
