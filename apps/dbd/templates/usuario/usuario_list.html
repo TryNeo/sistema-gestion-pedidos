@@ -55,13 +55,29 @@
               <table id="dataTable" class="table table-striped" style="width:100%">
                   <thead>
                     <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Staff</th>
                   </thead>
                   <tbody>
-                  {% for us in usuario_l %}
+                    {% for us in usuario_l %}
                     <tr>
                       <td>{{us.id}}</td>
+                      <td>{{us.first_name}}</td>
+                      <td>{{us.last_name}}</td>
+                      <td>{{us.username}}</td>
+                      <td>{{us.email}}</td>
+                      <td>
+                      {% if us.is_staff %}
+                        <i class="fa fa-check-circle"></i>
+                      {% else %}
+                        <i class=" fas fa-minus-circle"></i>
+                      {% endif %}
+                      </td>
                     </tr>
-                  {% endfor %}
+                    {% endfor %}
                   </tbody>
               </table>
               </div>
