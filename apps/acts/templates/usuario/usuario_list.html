@@ -43,7 +43,8 @@
         </div>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-        <a href="#"   class="btn btn-outline-secondary">Agregar Usuario</a>        
+        <a href="#"  onclick="return abrir_modal('{% url 'dbd:usuario_new' %}')"  class="btn btn-outline-secondary"> <i class="fa fa-plus" aria-hidden="true"></i>
+        Agregar Usuario</a>        
     </div>
 </div>
 <hr>
@@ -60,6 +61,8 @@
                     <th>Usuario</th>
                     <th>Email</th>
                     <th>Staff</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
                   </thead>
                   <tbody>
                     {% for us in usuario_l %}
@@ -71,11 +74,22 @@
                       <td>{{us.email}}</td>
                       <td>
                       {% if us.is_staff %}
-                        <i class="fa fa-check-circle"></i>
+                        <i class="fa fa-check-circle "></i>
                       {% else %}
-                        <i class=" fas fa-minus-circle"></i>
+                        <i class="fas fa-minus-circle"></i>
                       {% endif %}
                       </td>
+                      <td>
+                      {% if us.is_active %}
+                      <span class="label label-success">Activo</span>
+                      {% else %}
+                      <span class="label label-danger">Inactivo</span>
+                      {% endif %}
+                      </td>
+                      <td>
+                            <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:usuario_edit' us.id %}')" ><i class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:usuario_delete' us.id %}')" ><i class="far fa-thumbs-down"></i></button>
+                        </td>
                     </tr>
                     {% endfor %}
                   </tbody>

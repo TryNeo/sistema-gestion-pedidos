@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/avatar-user.png' %} " alt="Logo" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{request.user.get_image}} " alt="Logo" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">{{ request.user.username|capfirst }}</h5>
@@ -93,9 +93,12 @@
                             <li class="nav-item">
                                 <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-lock"></i>Administrar Permisos</a>
                                 <div id="submenu-3" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
+                                    <ul class="nav flex-column"> 
                                         <li class="nav-item">
-                                            <a class="nav-link {% if request.path == '/dashboard/usuarios/' %}active{% endif %} " href="{% url 'dbd:usuarios_list' %}" ><i class="fas fa-user"></i>Usuarios</a>
+                                            <a class="nav-link  " href="#" ><i class="fas fa-list-ul"></i>Grupos de Permisos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if request.path == '/dashboard/usuarios/' %}active{% endif %} " href="{% url 'dbd:usuario_list' %}" ><i class="fas fa-user"></i>Usuarios</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -120,7 +123,9 @@
         </div>
     </div>
   
-    <div class="modal fade"  role="dialog" id="popup" ></div>
+    <div class="modal fade"  role="dialog" id="popup" >
+   
+    </div>
 
     <!-- ============================================================== -->
     <!-- end main wrapper -->
@@ -136,8 +141,11 @@
     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'vendor/datatables/datatables-demo.js' %}"></script>
 
-  
     
+    <script src="{% static 'libs/sweetalert/sweetalert2.all.min.js' %}"></script>
+
+
+
     {% block control_modal %}
         <script>
             function abrir_modal(url){

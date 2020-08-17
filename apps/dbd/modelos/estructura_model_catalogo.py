@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-
+from apps.acts.models import User
 
 class Categoria(models.Model):
     id_categoria = models.AutoField(primary_key = True)
@@ -13,7 +12,6 @@ class Categoria(models.Model):
     usuario_modifica = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        db_table = 'categoria'
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
         ordering = ['id_categoria']

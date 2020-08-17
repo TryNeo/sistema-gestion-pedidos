@@ -2,8 +2,7 @@ from django.urls import path
 from apps.dbd.views.dashboard.views import *
 from apps.dbd.views.categoria.views import *
 from apps.dbd.views.proveedor.views import *
-from apps.dbd.views.usuarios.views import *
-
+from apps.acts.views import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
     path('', DashboardView.as_view(), name='dashboard'),
@@ -23,5 +22,9 @@ urlpatterns = [
 
 
     #----------------------SEGURIDAD------------------------------------#
-    path('usuarios/',UserListView.as_view(),name="usuarios_list"),
+    path('usuarios/',UserListView.as_view(),name="usuario_list"),
+    path('usuarios/new/',UserCreateView.as_view(),name="usuario_new"),
+    path('usuarios/edit/<int:pk>',UserUpdateView.as_view(),name="usuario_edit"),
+    path('usuarios/delete/<int:pk>',UserDeleteView.as_view(),name="usuario_delete"),
+
 ]
