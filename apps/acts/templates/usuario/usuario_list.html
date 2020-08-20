@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block title %}
 {{titulo}}
 {% endblock title %}
@@ -61,6 +60,7 @@
                     <th>Usuario</th>
                     <th>Email</th>
                     <th>Staff</th>
+                    <th>Roles</th>
                     <th>Estado</th>
                     <th>Opciones</th>
                   </thead>
@@ -79,6 +79,9 @@
                         <i class="fas fa-minus-circle"></i>
                       {% endif %}
                       </td>
+                      <td>{% for group in us.groups.all %}
+                        <div class="badge badge-pill badge-primary">{{group}}</div>
+                      {% endfor %}</td>
                       <td>
                       {% if us.is_active %}
                       <span class="label label-success">Activo</span>

@@ -2,6 +2,8 @@ from django.urls import path
 from apps.dbd.views.dashboard.views import *
 from apps.dbd.views.categoria.views import *
 from apps.dbd.views.proveedor.views import *
+from apps.dbd.views.roles.views import *
+
 from apps.acts.views import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
@@ -26,5 +28,7 @@ urlpatterns = [
     path('usuarios/new/',UserCreateView.as_view(),name="usuario_new"),
     path('usuarios/edit/<int:pk>',UserUpdateView.as_view(),name="usuario_edit"),
     path('usuarios/delete/<int:pk>',UserDeleteView.as_view(),name="usuario_delete"),
+    
+    path('roles/',RolListView.as_view(),name="rol_list"),
 
 ]

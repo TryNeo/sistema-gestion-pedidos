@@ -30,14 +30,15 @@
         <!-- ============================================================== -->
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="{% url 'dbd:dashboard' %}">ASOPROTESEU</a>
+                <a class="navbar-brand" href="{% url 'dbd:dashboard' %}">
+                <img src="{% static 'images/title-asoproteseu.png' %}" width="150px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{request.user.get_image}} " alt="Logo" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/avatar-user.png' %}" alt="Logo" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">{{ request.user.username|capfirst }}</h5>
@@ -95,7 +96,7 @@
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column"> 
                                         <li class="nav-item">
-                                            <a class="nav-link  " href="#" ><i class="fas fa-list-ul"></i>Grupos de Permisos</a>
+                                            <a class="nav-link {% if request.path == '/dashboard/roles/' %}active{% endif %} " href="{% url 'dbd:rol_list' %}" " href="#" ><i class="fas fa-list-ul"></i>Roles</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link {% if request.path == '/dashboard/usuarios/' %}active{% endif %} " href="{% url 'dbd:usuario_list' %}" ><i class="fas fa-user"></i>Usuarios</a>
