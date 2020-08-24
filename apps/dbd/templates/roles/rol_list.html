@@ -42,7 +42,10 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
-
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <a href="#" onclick="return abrir_modal('{% url 'dbd:rol_new' %}')" class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
+Agregar rol</a>        
+    </div>
 </div>
 <hr>
 <div class="row">
@@ -61,8 +64,10 @@
                     <tr>
                       <td>{{rol.id}}</td>
                       <td>{{rol.name}}</td>
-                      <td>  <button type="button" class="btn btn-info btn-circle"   ><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle"  ><i class="far fa-thumbs-down"></i></button></td>
+                      <td>  
+                      <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:rol_edit' rol.id %}')"  ><i class="fa fa-edit"></i></button>
+                      <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:rol_delete' rol.id %}')" ><i class="far fa-thumbs-down"></i></button>
+                      </td>
                     </tr>
                   {% endfor %}
                   </tbody>

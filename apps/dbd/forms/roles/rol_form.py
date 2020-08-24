@@ -14,7 +14,8 @@ class GroupForm(forms.ModelForm):
 
     class Meta:
         model = Group
-        fields = ['name']
+        fields = ['name','permissions']
         labels = {
             'nombre':'name',
+            'permisos':'permissions',
         }

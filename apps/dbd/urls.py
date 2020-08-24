@@ -30,5 +30,8 @@ urlpatterns = [
     path('usuarios/delete/<int:pk>',UserDeleteView.as_view(),name="usuario_delete"),
     
     path('roles/',RolListView.as_view(),name="rol_list"),
+    path('roles/new',RolCreateView.as_view(),name="rol_new"),
+    path('roles/edit/<int:pk>',RolUpdateView.as_view(),name="rol_edit"),
+    path('roles/delete/<int:pk>',RolDeleteView.as_view(),name="rol_delete"),
 
 ]

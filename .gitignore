@@ -29,3 +29,6 @@ apps/dbd/forms/proveedor/__pycache__
 apps/dbd/forms/proveedor/__pycache__/proveedor_form.cpython-36.pyc
 apps/dbd/views/proveedor/__pycache__/views.cpython-36.pyc
 apps/dbd/views/roles/__pycache__/views.cpython-36.pyc
+apps/dbd/forms/roles/__pycache__/rol_form.cpython-36.pyc
+apps/acts/__pycache__/views.cpython-36.pyc
+apps/acts/__pycache__/views.cpython-36.pyc

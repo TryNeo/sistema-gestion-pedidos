@@ -1,0 +1,43 @@
+{% load widget_tweaks %}
+<div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+        {% if obj %}
+        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:rol_edit' obj.pk %}">
+        {% else %}
+        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:rol_new' %}">
+        {% endif %}
+            {% csrf_token %}
+            <div class="modal-header">
+                <h5 class="modal-title" >{{titulo}} <i class=" fas fa-clipboard-list"></i></h5>
+            </div>
+            <div class="modal-body">
+                <div class="card-body ">
+                    <div class="form-group row">
+                        <label class="col-3 col-lg-2 col-form-label text-right">{{form.name.label}}</label>
+                        <div class="col-9 col-lg-10">
+                            {{form.name}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-3 col-lg-2 col-form-label text-right">{{form.permissions.label}}</label>
+                        <div class="ms-container" id="ms-keep-order">
+                            <div class="ms-selectable">
+                                {{form.permissions|add_class:'ms-list'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>             
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info">
+                        <i class="fas fa-save"></i> 
+                        Guardar Registro
+                </button>                    
+                <button type="button" class="btn btn-danger" onclick="return cerrar_modal()">
+                        <i class=" fas fa-exclamation-circle"></i> Cancelar
+                </button>                          
+            </div>
+        </form>
+    </div>
+</div>
+

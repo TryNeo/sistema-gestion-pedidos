@@ -51,13 +51,8 @@ class UserDeleteView(LoginRequiredMixin,DeleteView):
     model = User
     context_object_name = 'obj'
     template_name = "usuario/usuario_delete.html"
+    success_url = reverse_lazy('dbd:usuario_list')
 
-    def post(self,request,pk,*args, **kwargs):
-        user = User.objects.get(pk=pk)
-        user.is_active = False
-        user.save()
-        return redirect('dbd:usuario_list')
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Eliminacion de Usuario'
