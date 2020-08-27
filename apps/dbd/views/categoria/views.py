@@ -1,5 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from django.shortcuts import render,redirect
+from django.http import HttpResponseRedirect
 
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -26,15 +27,25 @@ class CategoriaCreateView(LoginRequiredMixin,CreateView):
     template_name = "categoria/categoria_form.html"
     success_url = reverse_lazy('dbd:categoria_list')
 
-
-    def form_valid(self, form):
-        form.instance.usuario_crea =  self.request.user
-        return super().form_valid(form)
+    def post(self, request,*args ,**kwargs):
+        self.object = self.get_object
+        form = CategoriaForm(request.POST)
+        if form.is_valid():
+            form.instance.usuario_crea =  self.request.user
+            form.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            errors = form.errors
+            return render(request,'catehgoria/categoria_list.html', {
+                'form':form,
+                'errors':errors
+             })
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Creación de Categoria'
+        context['titulo'] = 'Creacion de Categoria'
         return context
+
 
 
 class CategoriaUpdateView(LoginRequiredMixin,UpdateView):
@@ -46,7 +57,7 @@ class CategoriaUpdateView(LoginRequiredMixin,UpdateView):
 
 
     def form_valid(self, form):
-        form.instance.usuario_crea =  self.request.user
+        form.instance.usuario_modifica =  self.request.user
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -60,7 +71,7 @@ class CategoriaDeleteView(LoginRequiredMixin,DeleteView):
     template_name = "categoria/categoria_delete.html"
 
     def form_valid(self, form):
-        form.instance.usuario_crea =  self.request.user
+        form.instance.usuario_modifica =  self.request.user
         return super().form_valid(form)
 
     def post(self,request,pk,*args, **kwargs):

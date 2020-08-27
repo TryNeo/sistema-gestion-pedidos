@@ -1,5 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from django.shortcuts import render,redirect
+from django.http import HttpResponseRedirect
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -28,10 +29,17 @@ class RolCreateView(LoginRequiredMixin,CreateView):
     context_object_name = 'obj'
     template_name = "roles/rol_form.html"
     success_url = reverse_lazy('dbd:rol_list')
+    
+    def post(self, request,*args ,**kwargs):
+        self.object = self.get_object
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            print(form.errors)
+            return redirect('dbd:rol_list')
 
-    def form_valid(self, form):
-        form.instance.usuario_crea =  self.request.user
-        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -46,10 +54,6 @@ class RolUpdateView(LoginRequiredMixin,UpdateView):
     success_url = reverse_lazy('dbd:rol_list')
 
 
-    def form_valid(self, form):
-        form.instance.usuario_crea =  self.request.user
-        return super().form_valid(form)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Edicion de rol'
@@ -61,11 +65,7 @@ class RolDeleteView(LoginRequiredMixin,DeleteView):
     template_name = "roles/rol_delete.html"
     success_url = reverse_lazy('dbd:rol_list')
 
-    def form_valid(self, form):
-        form.instance.usuario_crea =  self.request.user
-        return super().form_valid(form)
 
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Eliminacion de rol'

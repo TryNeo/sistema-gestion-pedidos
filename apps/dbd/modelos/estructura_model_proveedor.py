@@ -19,7 +19,7 @@ class Proveedor(models.Model):
     fecha_crea = models.DateField("Fecha Creacion",auto_now_add=True)
     fecha_modifica = models.DateField("Fecha Modificacion", auto_now=True)
     usuario_crea =  models.ForeignKey(User,on_delete=models.CASCADE)
-    usuario_modifica = models.IntegerField(blank=True, null=True)
+    usuario_modifica = models.ForeignKey(User,related_name="fk_usuario_two",blank=True, null=True,on_delete=models.CASCADE)
 
 
     class Meta:
