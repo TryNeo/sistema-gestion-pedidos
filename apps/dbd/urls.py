@@ -3,12 +3,16 @@ from apps.dbd.views.dashboard.views import *
 from apps.dbd.views.categoria.views import *
 from apps.dbd.views.proveedor.views import *
 from apps.dbd.views.roles.views import *
+from apps.dbd.views.cliente.views import *
 
 from apps.acts.views import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
     path('', DashboardView.as_view(), name='dashboard'),
 
+    #-----------------------CLIENTE---------------------------------# 
+    path('cliente/',ClienteListView.as_view(),name="cliente_list"),
+    
     #-----------------------CATEGORIA---------------------------------# 
     path('categoria/',CategoriaListView.as_view(),name="categoria_list"),
     path('categoria/new/',CategoriaCreateView.as_view(),name="categoria_new"),

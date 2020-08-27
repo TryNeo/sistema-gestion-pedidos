@@ -36,3 +36,5 @@ apps/acts/__pycache__/__init__.cpython-36.pyc
 apps/acts/__pycache__/admin.cpython-36.pyc
 apps/acts/__pycache__/forms.cpython-36.pyc
 apps/acts/__pycache__/models.cpython-36.pyc
+apps/dbd/forms/cliente/__pycache__/cliente_form.cpython-36.pyc
+apps/dbd/views/cliente/__pycache__/views.cpython-36.pyc

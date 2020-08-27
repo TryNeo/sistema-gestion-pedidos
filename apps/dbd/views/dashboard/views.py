@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.acts.models import User
-
+from apps.dbd.modelos.esctructura_model_cliente import Cliente
 
 class DashboardView(LoginRequiredMixin,TemplateView):
     template_name = 'dashboard/index.html'
@@ -10,4 +10,6 @@ class DashboardView(LoginRequiredMixin,TemplateView):
         context = super().get_context_data(**kwargs)
         context['panel'] = 'Inicio|Asoprotesue'
         context['usuarios'] = User.objects.filter().count()
+        context['clientes'] = Cliente.objects.filter().count()
+
         return context

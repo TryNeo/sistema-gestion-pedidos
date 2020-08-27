@@ -31,7 +31,7 @@
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="{% url 'dbd:dashboard' %}">
-                <img src="{% static 'images/title-asoproteseu.png' %}" width="150px"></a>
+                <img src="{% static 'images/title-asoproteseu.png' %}" width="150px">AAAA</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,7 +46,6 @@
                                     <br>
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="{% url 'lhp:logout' %}"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
@@ -76,6 +75,9 @@
                                 <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'dbd:dashboard' %}"><i class="fas fa-home"></i>Dashboard</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link  {% if request.path == '/dashboard/cliente/' %}active{% endif %}" href="{% url 'dbd:cliente_list'%}"><i class="fas fa-users"></i>Clientes</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link  {% if request.path == '/dashboard/categoria/' %}active{% endif %}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-th-large"></i>Catalogo</a>
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
@@ -86,7 +88,7 @@
                                 </div>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link {% if request.path == '/dashboard/proveedor/' %}active{% endif %} " href="{% url 'dbd:proveedor_list' %}"><i class="fas fa-users"></i>Proveedores</a>
+                                <a class="nav-link {% if request.path == '/dashboard/proveedor/' %}active{% endif %} " href="{% url 'dbd:proveedor_list' %}"><i class="fas fa-dolly-flatbed"></i>Proveedores</a>
                             </li>
                             <li class="nav-divider">
                                 Seguridad
