@@ -4,7 +4,7 @@ from apps.dbd.views.categoria.views import *
 from apps.dbd.views.proveedor.views import *
 from apps.dbd.views.roles.views import *
 from apps.dbd.views.cliente.views import *
-
+from apps.dbd.views.reportes.views_reportes import *
 from apps.acts.views import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
@@ -29,7 +29,9 @@ urlpatterns = [
     path('proveedor/delete/<int:pk>',ProveedorDeleteView.as_view(),name="proveedor_delete"),
     path('proveedor/consult/<int:pk>',ProveedorConsultView.as_view(),name="proveedor_consult"),
 
-
+    #-----------------------REPORTES---------------------------------# 
+    path('reporte/proveedor/',reporte_proveedores,name="reporte_proveedor"),
+    
     #----------------------SEGURIDAD------------------------------------#
     path('usuarios/',UserListView.as_view(),name="usuario_list"),
     path('usuarios/new/',UserCreateView.as_view(),name="usuario_new"),

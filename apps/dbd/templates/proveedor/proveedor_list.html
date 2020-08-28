@@ -42,9 +42,13 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
         <a href="#" onclick="return abrir_modal('{% url 'dbd:proveedor_new' %}')"  class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
-        Agregar Proveedor</a>        
+        Agregar Proveedor</a>
+    </div>
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+        <a href="{% url 'dbd:reporte_proveedor' %}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"></i>
+        Imprimir Proveedores</a>
     </div>
 </div>
 <hr>
