@@ -44,3 +44,4 @@ apps/acts/migrations/__pycache__/0001_initial.cpython-36.pyc
 apps/acts/migrations/0001_initial.py
 apps/acts/migrations/__pycache__/0001_initial.cpython-36.pyc
 apps/acts/migrations/__pycache__/__init__.cpython-36.pyc
+apps/dbd/views/reportes/__pycache__/views_reportes.cpython-36.pyc
