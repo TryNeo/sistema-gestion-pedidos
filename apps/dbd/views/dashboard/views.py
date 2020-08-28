@@ -9,7 +9,7 @@ class DashboardView(LoginRequiredMixin,TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['panel'] = 'Inicio|Asoprotesue'
-        context['usuarios'] = User.objects.filter().count()
-        context['clientes'] = Cliente.objects.filter().count()
+        context['usuarios'] = User.objects.filter(is_active=True).count()
+        context['clientes'] = Cliente.objects.filter(estado=True).count()
 
         return context

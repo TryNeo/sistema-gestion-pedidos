@@ -15,12 +15,13 @@ class ClienteForm(forms.ModelForm):
     
     class Meta:
         model = Cliente
-        fields = ['nombre','apellido','cedula','correo','telefono','direccion']
+        fields = ['nombre','apellido','cedula','correo','telefono','direccion','estado']
         labels = {
             'nombre':'Nombre:',
             'apellido':'Apellido:',
             'cedula':'Cedula:',
             'correo':'Correo:',
             'telefono':'Telefono:',
-            'direccion':'Direccion:'
+            'direccion':'Direccion:',
+            'estado':'Estado:'
         }

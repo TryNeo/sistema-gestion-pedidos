@@ -17,3 +17,71 @@ class ClienteListView(LoginRequiredMixin,ListView):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Listado de Clientes'
         return context
+
+class ClienteCreateView(LoginRequiredMixin,CreateView):
+    model = Cliente
+    form_class = ClienteForm
+    context_object_name = 'obj'
+    template_name = "cliente/cliente_form.html"
+    success_url = reverse_lazy('dbd:cliente_list')
+
+    def post(self, request,*args ,**kwargs):
+        self.object = self.get_object
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.instance.usuario_crea =  self.request.user
+            form.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            """errors = form.errors
+            return render(request,'catehgoria/categoria_list.html', {
+                'form':form,
+                'errors':errors
+             })"""
+            print(form.errors)
+            return redirect('dbd:cliente_list')
+
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Creacion de Cliente'
+        return context
+
+
+class ClienteUpdateView(LoginRequiredMixin,UpdateView):
+    model = Cliente
+    form_class = ClienteForm
+    context_object_name = 'obj'
+    template_name = "cliente/cliente_form.html"
+    success_url = reverse_lazy('dbd:cliente_list')
+
+
+    def form_valid(self, form):
+        form.instance.usuario_modifica =  self.request.user
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Edicion de Cliente'
+        return context
+
+
+class ClienteDeleteView(LoginRequiredMixin,DeleteView):
+    model = Cliente
+    context_object_name = 'obj'
+    template_name = "cliente/cliente_delete.html"
+
+    def form_valid(self, form):
+        form.instance.usuario_modifica =  self.request.user
+        return super().form_valid(form)
+
+    def post(self,request,pk,*args, **kwargs):
+        cliente = Cliente.objects.get(id_cliente=pk)
+        cliente.estado = False
+        cliente.save()
+        return redirect('dbd:cliente_list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Eliminacion de Cliente'
+        return context

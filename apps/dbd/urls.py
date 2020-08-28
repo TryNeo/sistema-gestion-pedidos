@@ -12,7 +12,10 @@ urlpatterns = [
 
     #-----------------------CLIENTE---------------------------------# 
     path('cliente/',ClienteListView.as_view(),name="cliente_list"),
-    
+    path('cliente/new/',ClienteCreateView.as_view(),name="cliente_new"),
+    path('cliente/edit/<int:pk>',ClienteUpdateView.as_view(),name="cliente_edit"),
+    path('cliente/delete/<int:pk>',ClienteDeleteView.as_view(),name="cliente_delete"),
+
     #-----------------------CATEGORIA---------------------------------# 
     path('categoria/',CategoriaListView.as_view(),name="categoria_list"),
     path('categoria/new/',CategoriaCreateView.as_view(),name="categoria_new"),

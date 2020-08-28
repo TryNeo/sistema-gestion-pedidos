@@ -42,9 +42,8 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-        <a href="#" class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
-Agregar cliente</a>        
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <a href="#" onclick="return abrir_modal('{% url 'dbd:cliente_new' %}')" class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>Agregar cliente</a>        
     </div>
 </div>
 <hr>
@@ -61,19 +60,29 @@ Agregar cliente</a>
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Telefono</th>
-                    <th>Opciones</th>
+                    <th>Estado</th>
+                    <th class="all">Opciones</th>
                   </thead>
                   <tbody>
+                  {% for cli in cliente_l %}
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>  
+                      <td>{{cli.id_cliente}}</td>
+                      <td>{{cli.cedula}}</td>
+                      <td>{{cli.nombre}}</td>
+                      <td>{{cli.apellido}}</td>
+                      <td>{{cli.correo}}</td>
+                      <td>{{cli.telefono}}</td>
+                      <td>{% if cli.estado %}
+                      <span class="label label-success">Activo</span>
+                      {% else %}
+                      <span class="label label-danger">Inactivo</span>
+                      {% endif %} </td>
+                      <td>
+                          <button type="button"  class="btn btn-info btn-circle" onclick="return abrir_modal('{% url 'dbd:cliente_edit' cli.id_cliente %}')"><i class="fa fa-edit"></i></button>
+                          <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:cliente_delete' cli.id_cliente %}')"><i class="far fa-thumbs-down"></i></button>  
                       </td>
                     </tr>
+                  {% endfor %}
                   </tbody>
               </table>
               </div>
