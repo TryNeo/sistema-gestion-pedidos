@@ -40,3 +40,6 @@ apps/dbd/forms/cliente/__pycache__/cliente_form.cpython-36.pyc
 apps/dbd/views/cliente/__pycache__/views.cpython-36.pyc
 SistemaGestionPedidos/settings.py
 /home/josue/Documentos/projecto-reto/SistemaGestionPedidos/apps/acts/migrations
+apps/acts/migrations/__pycache__/0001_initial.cpython-36.pyc
+apps/acts/migrations/0001_initial.py
+apps/acts/migrations/__pycache__/0001_initial.cpython-36.pyc
