@@ -4,8 +4,8 @@ from apps.dbd.views.categoria.views import *
 from apps.dbd.views.proveedor.views import *
 from apps.dbd.views.roles.views import *
 from apps.dbd.views.cliente.views import *
-from apps.dbd.views.reportes.views_reportes import *
 from apps.acts.views import *
+from apps.dbd.views.reportes.reporte_proveedor import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
     path('', DashboardView.as_view(), name='dashboard'),
@@ -30,7 +30,7 @@ urlpatterns = [
     path('proveedor/consult/<int:pk>',ProveedorConsultView.as_view(),name="proveedor_consult"),
 
     #-----------------------REPORTES---------------------------------# 
-    path('reporte/proveedor/',reporte_proveedores,name="reporte_proveedor"),
+    path('reporte/proveedor/',ReporteProveedorPdf.as_view(),name="reporte_proveedor"),
     
     #----------------------SEGURIDAD------------------------------------#
     path('usuarios/',UserListView.as_view(),name="usuario_list"),

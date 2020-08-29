@@ -5,10 +5,6 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 
-from django.utils import timezone
-from django.contrib.auth.decorators import login_required
-
-from apps.dbd.modelos.estructura_model_proveedor import Proveedor
 
 def link_callback(uri, rel):
             """
@@ -40,27 +36,3 @@ def link_callback(uri, rel):
                             'media URI must start with %s or %s' % (sUrl, mUrl)
                     )
             return path
-
-@login_required
-def reporte_proveedores(request):
-        template_path = 'reportes/proveedor_report.html'
-        today = timezone.now()
-        proveedores = Proveedor.objects.all()
-        total_proveedores = Proveedor.objects.filter().count()
-        context = {
-                'proveedor':proveedores,
-                'today':today,
-                'request':request,
-                'total_proveedores':total_proveedores
-        }
-
-        response = HttpResponse(content_type="application/pdf")
-        response['Content-Disposition'] = 'inline; filename="reporte_proveedores.pdf"'
-        template = get_template(template_path)
-        html = template.render(context)
-
-        pisa_status = pisa.CreatePDF(
-        html, dest=response, link_callback=link_callback)
-        if pisa_status.err:
-                return HttpResponse('We had some errors <pre>' + html + '</pre>')
-        return response
