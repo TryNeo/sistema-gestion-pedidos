@@ -20,10 +20,9 @@ class ReporteProveedorPdf(LoginRequiredMixin,View):
             proveedores = Proveedor.objects.all()
             total_proveedores = Proveedor.objects.filter().count()
             context = {
-                    'proveedor':proveedores,
+                    'user': self.request.user,
                     'today':today,
-                    'request':request,
-                    'total_proveedores':total_proveedores
+                    'datos':{'empresa':'Asoproteseu S.A','telefono':'099-8364-0298','ruc':'1790004104001'}
             }
             template = get_template("reportes/proveedor_report.html")
             html = template.render(context)
