@@ -22,7 +22,9 @@ class ReporteProveedorPdf(LoginRequiredMixin,View):
             context = {
                     'user': self.request.user,
                     'today':today,
-                    'datos':{'empresa':'Asoproteseu S.A','telefono':'099-8364-0298','ruc':'1790004104001'}
+                    'datos':{'empresa':'Asoproteseu S.A','telefono':'099-8364-0298','ruc':'1790004104001'},
+                    'proveedores':proveedores,
+                    'total_proveedores':total_proveedores
             }
             template = get_template("reportes/proveedor_report.html")
             html = template.render(context)

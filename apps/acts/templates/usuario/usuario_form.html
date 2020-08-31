@@ -2,9 +2,9 @@
 <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
         {% if obj %}
-        <form method="POST" class="form-inline" action="{% url 'dbd:usuario_edit' obj.pk %}">
+        <form method="POST" class="form-inline" action="{% url 'dbd:usuario_edit' obj.pk %}" enctype="multipart/form-data">
         {% else %}
-        <form method="POST" class="form-inline" action="{% url 'dbd:usuario_new' %}">        
+        <form method="POST" class="form-inline" action="{% url 'dbd:usuario_new' %}" enctype="multipart/form-data">        
         {% endif %}
             {% csrf_token %}
             <div class="modal-header">
