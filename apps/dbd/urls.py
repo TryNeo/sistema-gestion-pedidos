@@ -34,6 +34,7 @@ urlpatterns = [
 
     #-----------------------PRODUCTO---------------------------------# 
     path('producto/',ProductoListView.as_view(),name="producto_list"),
+    path('producto/new/',ProductoCreateView.as_view(),name="producto_new"),
 
     #-----------------------REPORTES---------------------------------# 
     path('reporte/proveedor/',ReporteProveedorPdf.as_view(),name="reporte_proveedor"),

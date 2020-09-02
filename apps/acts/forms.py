@@ -21,7 +21,7 @@ class UsuarioForm(forms.ModelForm):
             'email':'Email:',
             'password':'Contraseña',
             'is_active':'Estado',
-            'groups':'Grupo de Permisos'
+            'groups':'Permisos'
         }
 
         widgets ={

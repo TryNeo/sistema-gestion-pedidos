@@ -49,11 +49,11 @@
         <div class="card border-3 border-top border-top-primary">
             <div class="card-body">
                 <div class="d-inline-block">
-                    <h5 class="text-muted">Nulo</h5>
-                    <h2 class="mb-0">0</h2>
+                    <h5 class="text-muted">Proveedores</h5>
+                    <h2 class="mb-0">{{proveedor}}</h2>
                 </div>
-                <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
-                    <i class=" fas fa-cart-plus fa-fw fa-sm text-success"></i>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-danger-light mt-1">
+                    <i class=" fas fa-handshake fa-fw fa-sm text-danger"></i>
                 </div>
             </div>
         </div>
@@ -64,11 +64,34 @@
         <div class="card">
             <h5 class="card-header">Nuevos Productos</h5>
             <div class="card-body p-0">
-                <ul class="traffic-sales list-group list-group-flush">
-                    {% for pro in productos %}
-                        {{pro.nombre}}
-                    {% endfor %}
-                </ul>
+                {% if productos %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-light">
+                            <tr class="border-0">
+                                <th class="border-0">ID</th>
+                                <th class="border-0">Imagen</th>
+                                <th class="border-0">Producto</th>
+                                <th class="border-0">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for pro in productos  %}
+                                    <tr>
+                                        <td>{{pro.id_producto}}</td>
+                                        <td><div class="m-r-10"><img src="/media/{{pro.imagen}}" class="rounded" width="39"></div></td>
+                                        <td>{{pro.nombre|upper}}</td>
+                                        <td>${{pro.precio}}</td>
+                                    </tr>
+                                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                    <li class="traffic-sales-content list-group-item ">
+                    <span class="traffic-sales-name">No hay nuevos productos agregados <i class="fas fa-frown"></i></span>
+                    </li>
+                {% endif %}
             </div>
             <div class="card-footer text-center">
             <a href="{% url 'dbd:producto_list' %}" class="btn-primary-link">Ver todo los Productos</a>
