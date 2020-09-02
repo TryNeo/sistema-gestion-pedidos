@@ -31,7 +31,7 @@
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="{% url 'dbd:dashboard' %}">
-                <img src="{% static 'images/title-asoproteseu.png' %}" width="150px"></a>
+                AS</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -83,6 +83,9 @@
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link  {% if request.path == '/dashboard/categoria/' %}active{% endif %}" href="{% url 'dbd:categoria_list' %}"><i class="fa fa-tags"></i> Categorias</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if request.path == '/dashboard/producto/' %}active{% endif %}" href="{% url 'dbd:producto_list' %}"><i class="fa fa-barcode"></i> Productos</a>
                                         </li>
                                     </ul>
                                 </div>

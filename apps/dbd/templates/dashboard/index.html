@@ -45,5 +45,35 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Nulo</h5>
+                    <h2 class="mb-0">0</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
+                    <i class=" fas fa-cart-plus fa-fw fa-sm text-success"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Nuevos Productos</h5>
+            <div class="card-body p-0">
+                <ul class="traffic-sales list-group list-group-flush">
+                    {% for pro in productos %}
+                        {{pro.nombre}}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+            <a href="{% url 'dbd:producto_list' %}" class="btn-primary-link">Ver todo los Productos</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}

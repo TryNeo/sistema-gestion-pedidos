@@ -1,10 +1,13 @@
 from django.urls import path
-from apps.dbd.views.dashboard.views import *
-from apps.dbd.views.categoria.views import *
-from apps.dbd.views.proveedor.views import *
+
+from apps.acts.views import *
 from apps.dbd.views.roles.views import *
 from apps.dbd.views.cliente.views import *
-from apps.acts.views import *
+from apps.dbd.views.producto.views import *
+from apps.dbd.views.proveedor.views import *
+from apps.dbd.views.dashboard.views import *
+from apps.dbd.views.categoria.views import *
+
 from apps.dbd.views.reportes.reporte_proveedor import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
@@ -28,6 +31,9 @@ urlpatterns = [
     path('proveedor/edit/<int:pk>',ProveedorUpdateView.as_view(),name="proveedor_edit"),
     path('proveedor/delete/<int:pk>',ProveedorDeleteView.as_view(),name="proveedor_delete"),
     path('proveedor/consult/<int:pk>',ProveedorConsultView.as_view(),name="proveedor_consult"),
+
+    #-----------------------PRODUCTO---------------------------------# 
+    path('producto/',ProductoListView.as_view(),name="producto_list"),
 
     #-----------------------REPORTES---------------------------------# 
     path('reporte/proveedor/',ReporteProveedorPdf.as_view(),name="reporte_proveedor"),

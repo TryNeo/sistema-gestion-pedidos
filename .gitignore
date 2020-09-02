@@ -47,3 +47,5 @@ apps/acts/migrations/__pycache__/__init__.cpython-36.pyc
 apps/dbd/views/reportes/__pycache__/views_reportes.cpython-36.pyc
 .vscode/settings.json
 apps/dbd/views/reportes/__pycache__/reporte_proveedor.cpython-36.pyc
+apps/dbd/forms/producto/__pycache__/producto_form.cpython-36.pyc
+apps/dbd/views/producto/__pycache__/views.cpython-36.pyc
