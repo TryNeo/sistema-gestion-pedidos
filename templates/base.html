@@ -38,15 +38,10 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{request.user.get_image}}" alt="Logo" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{request.user.get_image}}" alt="Logo" class="user-avatar-md rounded-circle"> <span class="hidden-xs">{{request.user.username|capfirst}}</span></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">{{ request.user.username|capfirst }}</h5>
-                                    <span class="badge-dot badge-success"></span>{% if request.user.is_active %}Activo{% else %}Inactivo{% endif %}</span>
-                                    <br>
-                                </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="{% url 'lhp:logout' %}"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="{% url 'lhp:logout' %}"><i class="fas fa-power-off mr-2"></i>Salir</a>
                             </div>
                         </li>
                     </ul>
