@@ -35,6 +35,8 @@ urlpatterns = [
     #-----------------------PRODUCTO---------------------------------# 
     path('producto/',ProductoListView.as_view(),name="producto_list"),
     path('producto/new/',ProductoCreateView.as_view(),name="producto_new"),
+    path('producto/edit/<int:pk>',ProductoUpdateView.as_view(),name="producto_edit"),
+    path('producto/delete/<int:pk>',ProductoDeleteView.as_view(),name="producto_delete"),
 
     #-----------------------REPORTES---------------------------------# 
     path('reporte/proveedor/',ReporteProveedorPdf.as_view(),name="reporte_proveedor"),

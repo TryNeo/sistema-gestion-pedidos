@@ -1,13 +1,54 @@
 {% load widget_tweaks %}
 <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
-        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:producto_new' %}">
+        {% if obj %}
+        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:producto_edit' obj.pk %}" enctype="multipart/form-data">
+        {% else %}
+        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:producto_new' %}" enctype="multipart/form-data">
+        {% endif %}
         {% csrf_token %}
             <div class="modal-header">
                 <h5 class="modal-title" >{{titulo}} <i class=" fas fa-clipboard-list"></i></h5>
             </div>
             <div class="modal-body">
                 <div class="card-body row">
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-4 col-form-label text-right">{{form.nombre.label}}</label>
+                        {{form.nombre}}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-5 col-form-label text-right">{{form.id_categoria.label}}</label>
+                        {{form.id_categoria}}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.costo.label}}</label>
+                        {{form.costo}}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.precio.label}}</label>
+                        {{form.precio}}
+                    </div>
+                    <div class="form-group col-md-5 mb-3 ">
+                        {% if obj %}
+                        {{form.imagen}}
+                        {% else %}
+                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.imagen.label}}</label>
+                        {{form.imagen}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-9 mb-3">
+                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.descripcion.label}}</label>
+                        <div class="col-4 col-lg-10">
+                        {{form.descripcion|attr:'rows:2'|attr:'cols:40'}}
+                        </div>
+                    </div>
+                    {% if obj %}
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-5 col-form-label text-right">{{form.estado.label}}</label>
+                        {{form.estado}}
+                    </div>
+                    {% else %}
+                    {% endif %}
                 </div>
             </div>             
             <div class="modal-footer">

@@ -85,8 +85,11 @@
                             <span class="label label-danger">Inactivo</span>
                             {% endif %} 
                         </td>
-                        <td></td>
-                      </tr>
+                        <td>
+                            <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:producto_edit' producto.id_producto %}')" ><i class="far fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger btn-circle"  onclick="return abrir_modal('{% url 'dbd:producto_delete' producto.id_producto %}')" ><i class="far fa-thumbs-down"></i></button>
+                        </td>
+                        </tr>
                     {% endfor %}
                   </tbody>
               </table>
