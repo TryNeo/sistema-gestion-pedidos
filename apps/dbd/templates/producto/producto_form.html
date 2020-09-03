@@ -42,13 +42,10 @@
                         {{form.descripcion|attr:'rows:2'|attr:'cols:40'}}
                         </div>
                     </div>
-                    {% if obj %}
                     <div class="col-md-6 mb-3">
-                        <label class="col-3 col-lg-5 col-form-label text-right">{{form.estado.label}}</label>
+                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.estado.label}}</label>
                         {{form.estado}}
                     </div>
-                    {% else %}
-                    {% endif %}
                 </div>
             </div>             
             <div class="modal-footer">

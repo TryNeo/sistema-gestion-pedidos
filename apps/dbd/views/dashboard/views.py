@@ -16,6 +16,6 @@ class DashboardView(LoginRequiredMixin,TemplateView):
         context['usuarios'] = User.objects.filter(is_active=True).count()
         context['clientes'] = Cliente.objects.filter(estado=True).count()
         context['proveedor'] = Proveedor.objects.filter(estado=True).count()
-        context['productos'] = Producto.objects.filter(fecha_crea=datetime.date.today())[:10]
+        context['productos'] = Producto.objects.filter(fecha_crea=datetime.date.today())[:5]
 
         return context
