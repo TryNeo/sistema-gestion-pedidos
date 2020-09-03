@@ -28,7 +28,7 @@ class UserCreateView(LoginRequiredMixin,CreateView):
 
     def post(self, request,*args ,**kwargs):
         self.object = self.get_object
-        form = UsuarioForm(request.POST)
+        form = UsuarioForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(self.get_success_url())

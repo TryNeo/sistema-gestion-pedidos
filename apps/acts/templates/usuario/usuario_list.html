@@ -57,6 +57,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Usuario</th>
+                    <th>Imagen</th>
                     <th>Email</th>
                     <th>Staff</th>
                     <th>Roles</th>
@@ -70,6 +71,11 @@
                       <td>{{us.first_name}}</td>
                       <td>{{us.last_name}}</td>
                       <td>{{us.username}}</td>
+                      <td>
+                        <div class="m-r-10">
+                              <img src="{{us.get_image}}"  class="rounded" width="30">
+                        </div>
+                      </td>
                       <td>{{us.email}}</td>
                       <td>
                       {% if us.is_staff %}

@@ -13,15 +13,16 @@ class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name','last_name','username','email','password','is_active','groups']
+        fields = ['first_name','last_name','username','email','password','is_active','groups','image']
         labels = {
             'first_name':'Nombre:',
             'last_name': 'Apellido:',
             'username':'Usuario:',
             'email':'Email:',
-            'password':'Contraseña',
-            'is_active':'Estado',
-            'groups':'Permisos'
+            'password':'Contraseña:',
+            'is_active':'Estado:',
+            'groups':'Permisos:',
+            'image':'Imagen:'
         }
 
         widgets ={
@@ -30,5 +31,5 @@ class UsuarioForm(forms.ModelForm):
             )
         }
 
-        exclude = ['user_permissions','last_login','is_superuser','is_staff','image']
+        exclude = ['user_permissions','last_login','is_superuser','is_staff']
 

@@ -79,7 +79,7 @@
                                 {% for pro in productos  %}
                                     <tr>
                                         <td>{{pro.id_producto}}</td>
-                                        <td><div class="m-r-10"><img src="/media/{{pro.imagen}}" class="rounded" width="39"></div></td>
+                                        <td><div class="m-r-10"><img src="{{pro.get_image}}" class="rounded" width="39"></div></td>
                                         <td>{{pro.nombre|upper}}</td>
                                         <td>${{pro.precio}}</td>
                                     </tr>

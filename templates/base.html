@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/avatar-user.png' %}" alt="Logo" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{request.user.get_image}}" alt="Logo" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">{{ request.user.username|capfirst }}</h5>
@@ -73,6 +73,9 @@
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'dbd:dashboard' %}"><i class="fas fa-home"></i>Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Pedidos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link  {% if request.path == '/dashboard/cliente/' %}active{% endif %}" href="{% url 'dbd:cliente_list'%}"><i class="fas fa-users"></i>Clientes</a>

@@ -1,6 +1,7 @@
 from django.db import models
 from apps.acts.models import User
 from apps.dbd.modelos.estructura_model_catalogo import Categoria
+from SistemaGestionPedidos.settings import MEDIA_URL,STATIC_URL
 
 
 class Producto(models.Model):
@@ -21,6 +22,11 @@ class Producto(models.Model):
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
         ordering = ['id_producto']
+    
+    def get_image(self):
+        if self.imagen:
+            return '{}{}'.format(MEDIA_URL,self.imagen)
+        return '{}{}'.format(STATIC_URL,'images/empty.png')
     
     def __str__(self):
         return '{}'.format(self.nombre)
