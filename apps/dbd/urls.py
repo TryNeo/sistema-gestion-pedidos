@@ -7,8 +7,8 @@ from apps.dbd.views.producto.views import *
 from apps.dbd.views.proveedor.views import *
 from apps.dbd.views.dashboard.views import *
 from apps.dbd.views.categoria.views import *
-
 from apps.dbd.views.reportes.reporte_proveedor import *
+from apps.dbd.views.reportes.reporte_producto import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
     path('', DashboardView.as_view(), name='dashboard'),
@@ -38,9 +38,11 @@ urlpatterns = [
     path('producto/edit/<int:pk>',ProductoUpdateView.as_view(),name="producto_edit"),
     path('producto/delete/<int:pk>',ProductoDeleteView.as_view(),name="producto_delete"),
 
+ 
     #-----------------------REPORTES---------------------------------# 
     path('reporte/proveedor/',ReporteProveedorPdf.as_view(),name="reporte_proveedor"),
-    
+    path('reporte/producto/',ReporteProductoPdf.as_view(),name="reporte_producto"),
+
     #----------------------SEGURIDAD------------------------------------#
     path('usuarios/',UserListView.as_view(),name="usuario_list"),
     path('usuarios/new/',UserCreateView.as_view(),name="usuario_new"),
