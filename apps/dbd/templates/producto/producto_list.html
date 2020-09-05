@@ -46,6 +46,10 @@
         <a href="#" onclick="return abrir_modal('{% url 'dbd:producto_new' %}')"  class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
         Agregar Producto</a>
     </div>
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+        <a href="{% url 'dbd:reporte_producto' %}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"></i>
+        Imprimir Productos</a>
+    </div>
 </div>
 <hr>
 <div class="row">
@@ -60,7 +64,7 @@
                     <th>Producto</th>
                     <th>Descripcion</th>
                     <th>Categoria</th>
-                    <th>Costo $</th>
+                    <th>Stock</th>
                     <th>Precio $</th>
                     <th>Estado</th>
                     <th class="all">Opciones</th>
@@ -77,7 +81,7 @@
                         <td>{{producto.nombre}}</td>
                         <td>{{producto.descripcion}}</td>
                         <td>{{producto.id_categoria}}</td>
-                        <td>{{producto.costo}}</td>
+                        <td>{{producto.existencia}}</td>
                         <td>{{producto.precio}}</td>
                         <td>{% if producto.estado %}
                             <span class="label label-success">Activo</span>

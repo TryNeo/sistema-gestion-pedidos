@@ -14,7 +14,7 @@ class ProductoForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ['nombre','descripcion','imagen','costo','precio','id_categoria','estado']
+        fields = ['nombre','descripcion','imagen','costo','precio','id_categoria','estado','existencia']
         labels = {
             'nombre':'Producto:',
             'descripcion':'Descripcion:',
@@ -22,5 +22,6 @@ class ProductoForm(forms.ModelForm):
             'costo':'Costo:',
             'precio':'Precio:',
             'id_categoria':'Categoria:',
-            'estado':'Estado:'
+            'estado':'Estado:',
+            'existencia':'Existencia:'
         }
