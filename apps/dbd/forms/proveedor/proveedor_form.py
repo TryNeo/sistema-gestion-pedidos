@@ -50,6 +50,20 @@ class ProveedorForm(forms.ModelForm):
         }
 
 
+    def clean(self):
+        try:
+            prov = Proveedor.objects.get(
+                    nombre = self.cleaned_data["nombre"],
+                )
+            if not self.instance.pk:
+                raise forms.ValidationError("Registro ya existente")
+            elif self.instance.pk != prov.pk:
+                raise forms.ValidationError("Cambio no Permitido , Ya coincide con otro registro")
+        except Proveedor.DoesNotExist:
+            pass
+        return self.cleaned_data 
+
+
 class ConsultaProveedorForm(forms.ModelForm):
     class Meta:
         model = Proveedor

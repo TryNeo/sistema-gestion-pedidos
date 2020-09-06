@@ -25,3 +25,16 @@ class ClienteForm(forms.ModelForm):
             'direccion':'Direccion:',
             'estado':'Estado:'
         }
+
+    def clean(self):
+        try:
+            cli = Cliente.objects.get(
+                    nombre = self.cleaned_data["nombre"]
+                )
+            if not self.instance.pk:
+                raise forms.ValidationError("Registro ya existente")
+            elif self.instance.pk != cli.pk:
+                raise forms.ValidationError("Cambio no Permitido , Ya coincide con otro registro")
+        except Cliente.DoesNotExist:
+            pass
+        return self.cleaned_data 

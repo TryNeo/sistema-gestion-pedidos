@@ -32,9 +32,6 @@ class UserCreateView(LoginRequiredMixin,CreateView):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(self.get_success_url())
-        else:
-            print(form.errors)
-            return redirect('dbd:usuario_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

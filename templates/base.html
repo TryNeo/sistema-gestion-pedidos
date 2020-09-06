@@ -15,6 +15,7 @@
     <link href=" {% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
     
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/tejido.ico' %}">
+    <script src="{% static 'libs/sweetalert/sweetalert2.all.min.js' %}"></script>
 
     {% block extra_css %}
     {% endblock extra_css %}
@@ -70,7 +71,7 @@
                                 <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'dbd:dashboard' %}"><i class="fas fa-home"></i>Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Pedidos</a>
+                                <a class="nav-link {% if request.path == '/dashboard/pedido/' %}active{% endif %}" href="{% url 'dbd:pedido_list' %}"><i class="fa fa-shopping-cart"></i> Pedidos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link  {% if request.path == '/dashboard/cliente/' %}active{% endif %}" href="{% url 'dbd:cliente_list'%}"><i class="fas fa-users"></i>Clientes</a>
@@ -167,6 +168,17 @@
             $('#popup').modal('hide');
             return false;
             }
+
+            function mensaje(msg){
+              Swal.fire({
+                title: 'Error!',
+                text: msg,
+                icon: 'error'
+              });
+            }
+
+            
+            
         </script>
     {% endblock control_modal %}
 

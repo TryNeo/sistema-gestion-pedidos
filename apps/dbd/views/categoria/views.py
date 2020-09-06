@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from apps.dbd.modelos.estructura_model_catalogo import Categoria
 from apps.dbd.forms.categoria.categoria_form import CategoriaForm
+from apps.dbd.views.mixin.mixin import MixinFormInvalid
 
 
 class CategoriaListView(LoginRequiredMixin,ListView):
@@ -20,28 +21,16 @@ class CategoriaListView(LoginRequiredMixin,ListView):
         return context
 
 
-class CategoriaCreateView(LoginRequiredMixin,CreateView):
+class CategoriaCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
     model = Categoria
     form_class = CategoriaForm
     context_object_name = 'obj'
     template_name = "categoria/categoria_form.html"
     success_url = reverse_lazy('dbd:categoria_list')
 
-    def post(self, request,*args ,**kwargs):
-        self.object = self.get_object
-        form = CategoriaForm(request.POST)
-        if form.is_valid():
-            form.instance.usuario_crea =  self.request.user
-            form.save()
-            return HttpResponseRedirect(self.get_success_url())
-        else:
-            """errors = form.errors
-            return render(request,'catehgoria/categoria_list.html', {
-                'form':form,
-                'errors':errors
-             })"""
-            print(form.errors)
-            return redirect('dbd:categoria_list')
+    def form_valid(self,form):
+        form.instance.usuario_crea = self.request.user
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,7 +39,7 @@ class CategoriaCreateView(LoginRequiredMixin,CreateView):
 
 
 
-class CategoriaUpdateView(LoginRequiredMixin,UpdateView):
+class CategoriaUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
     model = Categoria
     form_class = CategoriaForm
     context_object_name = 'obj'

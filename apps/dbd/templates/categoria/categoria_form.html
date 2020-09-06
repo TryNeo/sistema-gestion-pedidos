@@ -46,3 +46,34 @@
         </form>
     </div>
 </div>
+<script type="text/javascript">
+$(function() {
+
+    var url = $("form").attr("action"); /*obtenemos el url correspondiente si es edit o new*/
+    
+    var token = jQuery("[name=csrfmiddlewaretoken]").val();/*vamos a leer el csrftoken que tiene el form */
+    
+    $("form").submit(function(e){
+        e.preventDefault();
+        /*capturamos la data del formulario*/
+        var formData= $("form").serializeArray(); /*nos devuelve un array con los respectivos datos del form*/
+
+        $.ajax({
+            url:url,
+            method:"POST",
+            headers:{'x-CSRFToken':token},
+            data :formData
+        })
+        .done(function(r,textStatus,xhr){ /*preguntaremos si se ejecuto bien*/
+            if(xhr.status = 200){ /*preguntaremos por el status */
+                location.reload(true); /*si es True, recargaremos la pagina*/
+            }
+            else{ /*si no es True, le pasamos la function mensaje(); ya creada*/
+                mensaje(textStatus);
+            }
+        }).fail(function(error){ /*si fallase algo,el form nos mandara el mensaje de error de lo que esta mal en el form*/
+               mensaje('Registro ya existente o ya coincide con otro'); /*llamamos a nuestra funcion para que nos vote un modal de error*/
+            });
+    });
+});
+</script>

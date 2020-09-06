@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from django.shortcuts import render,redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,JsonResponse
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 
 from apps.dbd.modelos.estructura_model_proveedor import Proveedor
 from apps.dbd.forms.proveedor.proveedor_form import ProveedorForm,ConsultaProveedorForm
-
+from apps.dbd.views.mixin.mixin import MixinFormInvalid
 
 class ProveedorListView(LoginRequiredMixin,ListView):
     model = Proveedor
@@ -22,23 +22,17 @@ class ProveedorListView(LoginRequiredMixin,ListView):
         return context
 
 
-class ProveedorCreateView(LoginRequiredMixin,CreateView):
+class ProveedorCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
     model = Proveedor
     form_class = ProveedorForm
     context_object_name = 'obj'
     template_name = "proveedor/proveedor_form.html"
     success_url = reverse_lazy('dbd:proveedor_list')
     
-    def post(self, request,*args ,**kwargs):
-        self.object = self.get_object
-        form = ProveedorForm(request.POST)
-        if form.is_valid():
-            form.instance.usuario_crea =  self.request.user
-            form.save()
-            return HttpResponseRedirect(self.get_success_url())
-        else:
-            print(form.errors)
-            return redirect('dbd:proveedor_list')
+    def form_valid(self,form):
+        form.instance.usuario_crea = self.request.user
+        return super().form_valid(form)
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -46,7 +40,7 @@ class ProveedorCreateView(LoginRequiredMixin,CreateView):
         return context
 
 
-class ProveedorUpdateView(LoginRequiredMixin,UpdateView):
+class ProveedorUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
     model = Proveedor
     form_class = ProveedorForm
     context_object_name = 'obj'

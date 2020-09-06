@@ -25,3 +25,16 @@ class ProductoForm(forms.ModelForm):
             'estado':'Estado:',
             'existencia':'Existencia:'
         }
+
+    def clean(self):
+        try:
+            pro = Producto.objects.get(
+                    nombre = self.cleaned_data["nombre"]
+                )
+            if not self.instance.pk:
+                raise forms.ValidationError("Registro ya existente")
+            elif self.instance.pk != pro.pk:
+                raise forms.ValidationError("Cambio no Permitido , Ya coincide con otro registro")
+        except Producto.DoesNotExist:
+            pass
+        return self.cleaned_data 
