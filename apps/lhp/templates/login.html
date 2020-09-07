@@ -29,6 +29,15 @@
         padding-top: 40px;
         padding-bottom: 40px;
     }
+    .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    }
     </style>
 </head>
 
@@ -53,15 +62,15 @@
                         {{ form.password|add_class:'form-control form-control-lg'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su password' }}
 
                     </div>
-                    <div class="form-group">
-                        <label class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Recordar</span>
-                        </label>
-                    </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>
                 </form>
             </div>
-
+            <div class="card-footer">
+                <div class="text-center">
+                <a class="btn btn-info btn-circle" href="https://es-la.facebook.com/ASOPROTESUE.10/"><i class="fab fa-facebook"></i></a>
+                <a class="btn btn-danger btn-circle" href="https://es-la.facebook.com/ASOPROTESUE.10/"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
             </div>
             <script type="application/javascript">
                 {% if form.errors %}
