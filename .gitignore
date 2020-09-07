@@ -61,3 +61,4 @@ apps/dbd/views/pedido/__pycache__/views.cpython-36.pyc
 media/product/2020/09/05/title-asoproteseu.png
 apps/dbd/views/reportes/__pycache__/reporte_producto.cpython-36.pyc
 apps/dbd/views/mixin/__pycache__
+apps/dbd/views/errors/__pycache__/views.cpython-36.pyc
