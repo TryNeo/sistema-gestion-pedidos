@@ -33,3 +33,15 @@ class UsuarioForm(forms.ModelForm):
 
         exclude = ['user_permissions','last_login','is_superuser','is_staff']
 
+    def clean(self):
+        try:
+            use = User.objects.get(
+                    username = self.cleaned_data["username"]
+                )
+            if not self.instance.pk:
+                raise forms.ValidationError("Registro ya existente")
+            elif self.instance.pk != use.pk:
+                raise forms.ValidationError("Cambio no Permitido , Ya coincide con otro registro")
+        except User.DoesNotExist:
+            pass
+        return self.cleaned_data 
