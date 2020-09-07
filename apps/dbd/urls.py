@@ -9,6 +9,8 @@ from apps.dbd.views.dashboard.views import *
 from apps.dbd.views.categoria.views import *
 from apps.dbd.views.reportes.reporte_proveedor import *
 from apps.dbd.views.reportes.reporte_producto import *
+from apps.dbd.views.errors.views import *
+
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
     path('', DashboardView.as_view(), name='dashboard'),
@@ -38,7 +40,8 @@ urlpatterns = [
     path('producto/edit/<int:pk>',ProductoUpdateView.as_view(),name="producto_edit"),
     path('producto/delete/<int:pk>',ProductoDeleteView.as_view(),name="producto_delete"),
 
- 
+    #-----------------------PEDIDO---------------------------------# 
+
     #-----------------------REPORTES---------------------------------# 
     path('reporte/proveedor/',ReporteProveedorPdf.as_view(),name="reporte_proveedor"),
     path('reporte/producto/',ReporteProductoPdf.as_view(),name="reporte_producto"),
@@ -53,5 +56,8 @@ urlpatterns = [
     path('roles/new',RolCreateView.as_view(),name="rol_new"),
     path('roles/edit/<int:pk>',RolUpdateView.as_view(),name="rol_edit"),
     path('roles/delete/<int:pk>',RolDeleteView.as_view(),name="rol_delete"),
+    
+    path('403/',Error403View.as_view(),name="error_403"),
 
 ]
+
