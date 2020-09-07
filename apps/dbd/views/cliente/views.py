@@ -8,10 +8,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.dbd.modelos.esctructura_model_cliente import Cliente
 from apps.dbd.forms.cliente.cliente_form import ClienteForm
 from apps.dbd.views.mixin.mixin import MixinFormInvalid
+from apps.dbd.views.errors.views import Privilegios
 
 
-class ClienteListView(LoginRequiredMixin,ListView):
+class ClienteListView(LoginRequiredMixin,Privilegios,ListView):
     model = Cliente
+    permission_required = "dbd:view_cliente"
     context_object_name = 'cliente_l'
     template_name = "cliente/cliente_list.html"
     
@@ -20,8 +22,9 @@ class ClienteListView(LoginRequiredMixin,ListView):
         context['titulo'] = 'Listado de Clientes'
         return context
 
-class ClienteCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
+class ClienteCreateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,CreateView):
     model = Cliente
+    permission_required = "dbd:add_cliente"
     form_class = ClienteForm
     context_object_name = 'obj'
     template_name = "cliente/cliente_form.html"
@@ -38,8 +41,9 @@ class ClienteCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
         return context
 
 
-class ClienteUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
+class ClienteUpdateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,UpdateView):
     model = Cliente
+    permission_required = "dbd:change_cliente"
     form_class = ClienteForm
     context_object_name = 'obj'
     template_name = "cliente/cliente_form.html"
@@ -56,8 +60,9 @@ class ClienteUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
         return context
 
 
-class ClienteDeleteView(LoginRequiredMixin,DeleteView):
+class ClienteDeleteView(LoginRequiredMixin,Privilegios,DeleteView):
     model = Cliente
+    permission_required = "dbd.delete_cliente"
     context_object_name = 'obj'
     template_name = "cliente/cliente_delete.html"
 

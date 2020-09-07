@@ -1,17 +1,18 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
-
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 
+from apps.dbd.views.mixin.mixin import MixinFormInvalid
+from apps.dbd.views.errors.views import Privilegios
 from apps.dbd.modelos.estructura_model_catalogo import Categoria
 from apps.dbd.forms.categoria.categoria_form import CategoriaForm
-from apps.dbd.views.mixin.mixin import MixinFormInvalid
 
 
-class CategoriaListView(LoginRequiredMixin,ListView):
+class CategoriaListView(LoginRequiredMixin,Privilegios,ListView):
     model = Categoria
+    permission_required = "dbd.view_categoria"
     context_object_name = 'categoria_l'
     template_name = "categoria/categoria_list.html"
     
@@ -21,8 +22,9 @@ class CategoriaListView(LoginRequiredMixin,ListView):
         return context
 
 
-class CategoriaCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
+class CategoriaCreateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,CreateView):
     model = Categoria
+    permission_required = "dbd.add_categoria"
     form_class = CategoriaForm
     context_object_name = 'obj'
     template_name = "categoria/categoria_form.html"
@@ -39,8 +41,9 @@ class CategoriaCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
 
 
 
-class CategoriaUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
+class CategoriaUpdateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,UpdateView):
     model = Categoria
+    permission_required = "dbd.change_categoria"
     form_class = CategoriaForm
     context_object_name = 'obj'
     template_name = "categoria/categoria_form.html"
@@ -56,8 +59,9 @@ class CategoriaUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
         context['titulo'] = 'Edicion de Categoria'
         return context
 
-class CategoriaDeleteView(LoginRequiredMixin,DeleteView):
+class CategoriaDeleteView(LoginRequiredMixin,Privilegios,DeleteView):
     model = Categoria
+    permission_required = "dbd.delete_categoria"
     context_object_name = 'obj'
     template_name = "categoria/categoria_delete.html"
 

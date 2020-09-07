@@ -9,9 +9,11 @@ from django.urls import reverse_lazy
 from apps.dbd.modelos.estructura_model_proveedor import Proveedor
 from apps.dbd.forms.proveedor.proveedor_form import ProveedorForm,ConsultaProveedorForm
 from apps.dbd.views.mixin.mixin import MixinFormInvalid
+from apps.dbd.views.errors.views import Privilegios
 
-class ProveedorListView(LoginRequiredMixin,ListView):
+class ProveedorListView(LoginRequiredMixin,Privilegios,ListView):
     model = Proveedor
+    permission_required = "dbd.view_proveedor"
     context_object_name = 'proveedor_l'
     template_name = "proveedor/proveedor_list.html"
 
@@ -22,8 +24,9 @@ class ProveedorListView(LoginRequiredMixin,ListView):
         return context
 
 
-class ProveedorCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
+class ProveedorCreateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,CreateView):
     model = Proveedor
+    permission_required = "dbd.add_proveedor"
     form_class = ProveedorForm
     context_object_name = 'obj'
     template_name = "proveedor/proveedor_form.html"
@@ -40,8 +43,9 @@ class ProveedorCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
         return context
 
 
-class ProveedorUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
+class ProveedorUpdateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,UpdateView):
     model = Proveedor
+    permission_required = "dbd.change_proveedor"
     form_class = ProveedorForm
     context_object_name = 'obj'
     template_name = "proveedor/proveedor_form.html"
@@ -56,8 +60,9 @@ class ProveedorUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
         context['titulo'] = 'Edicion de Proveedor'
         return context
 
-class ProveedorConsultView(LoginRequiredMixin,UpdateView):
+class ProveedorConsultView(LoginRequiredMixin,Privilegios,UpdateView):
     model = Proveedor
+    permission_required = "dbd.delete_proveedor"
     form_class = ConsultaProveedorForm
     context_object_name = 'obja'
     template_name = "proveedor/proveedor_form.html"

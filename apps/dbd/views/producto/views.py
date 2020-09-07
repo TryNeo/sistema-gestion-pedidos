@@ -9,10 +9,12 @@ from django.urls import reverse_lazy
 from apps.dbd.modelos.estructura_model_producto import Producto
 from apps.dbd.forms.producto.producto_form import ProductoForm
 from apps.dbd.views.mixin.mixin import MixinFormInvalid
+from apps.dbd.views.errors.views import Privilegios
 
             
-class ProductoListView(LoginRequiredMixin,ListView):
+class ProductoListView(LoginRequiredMixin,Privilegios,ListView):
     model = Producto
+    permission_required = "dbd.view_producto"
     context_object_name = 'producto_l'
     template_name = "producto/producto_list.html"
 
@@ -21,8 +23,9 @@ class ProductoListView(LoginRequiredMixin,ListView):
         context['titulo'] = 'Listado de Productos'
         return context
 
-class ProductoCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
+class ProductoCreateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,CreateView):
     model = Producto
+    permission_required = "dbd.add_producto"
     form_class = ProductoForm
     context_object_name = 'obj'
     template_name = "producto/producto_form.html"
@@ -37,8 +40,9 @@ class ProductoCreateView(LoginRequiredMixin,MixinFormInvalid,CreateView):
         context['titulo'] = 'Creación de Producto'
         return context
 
-class ProductoUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
+class ProductoUpdateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,UpdateView):
     model = Producto
+    permission_required = "dbd.change_producto"
     form_class = ProductoForm
     context_object_name = 'obj'
     template_name = "producto/producto_form.html"
@@ -54,8 +58,9 @@ class ProductoUpdateView(LoginRequiredMixin,MixinFormInvalid,UpdateView):
         context['titulo'] = 'Edicion de Producto'
         return context
 
-class ProductoDeleteView(LoginRequiredMixin,DeleteView):
+class ProductoDeleteView(LoginRequiredMixin,Privilegios,DeleteView):
     model = Producto
+    permission_required = "dbd.delete_producto"
     context_object_name = 'obj'
     template_name = "producto/producto_delete.html"
 
