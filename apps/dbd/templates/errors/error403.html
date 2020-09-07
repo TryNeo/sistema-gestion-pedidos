@@ -1,0 +1,18 @@
+{% extends 'base_error.html' %}
+
+{% block titulo %}
+403
+{% endblock titulo %}
+
+{% block titulo_error %}
+403
+{% endblock titulo_error %}
+
+{% block content %}
+<p>Oops! Lo siento no tienes permisos suficientes para ver esta pagina {% if user.is_authenticated %}{{ username }}{% else %}Guesped{% endif %}</p>
+<p><a href="{% url 'dbd:dashboard' %}">Returna al Inicio</a></p>
+<div class="notfound-social">
+	<a href="https://es-la.facebook.com/ASOPROTESUE.10/"><i class="fa fa-facebook"></i></a>
+	<a href="https://www.instagram.com/asoprotesue.10/"><i class="fa fa-instagram"></i></a>
+</div>
+{% endblock content %}
