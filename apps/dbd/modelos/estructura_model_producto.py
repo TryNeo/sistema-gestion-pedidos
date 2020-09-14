@@ -10,7 +10,6 @@ class Producto(models.Model):
     descripcion =  models.TextField("Descripcion",max_length=250,blank=True, null=True)
     imagen = models.ImageField(upload_to="product/%Y/%m/%d",blank=True, null=True)
     costo = models.DecimalField('Costo',default=0.00, max_digits=9, decimal_places=2)
-    precio =  models.DecimalField('Precio',default=0.00, max_digits=9, decimal_places=2)
     existencia  = models.IntegerField(default=0)
     id_categoria = models.ForeignKey(Categoria, related_name='fk_categoria', on_delete=models.CASCADE)
     estado = models.BooleanField("Activo/Inactivo",default=True)

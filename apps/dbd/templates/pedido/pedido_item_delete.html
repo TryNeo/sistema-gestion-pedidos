@@ -1,0 +1,28 @@
+<div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <form method="POST" role="form" class="form-inline" action="{% url 'dbd:pedido_delete_item' obj.pedido.id_pedido obj.pk %}">
+            {% csrf_token %}
+            <div class="modal-header">
+                <h5 class="modal-title" >Eliminar Item</h5>
+            </div>
+            <div class="modal-body">
+                <div class="card-body ">
+                    <p>
+                    Eliminar Producto <strong> {{obj.producto}}</strong>, total producto {{obj.total}} del pedido
+                    <strong>{{obj.pedido.num_pedido}}</strong>
+                    </p>
+                </div>
+            </div>             
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-trash"></i> 
+                        Si 
+                </button>                    
+                <button type="button" class="btn btn-danger" onclick="return cerrar_modal()">
+                        <i class=" fas fa-exclamation-circle"></i> Cancelar
+                </button>                          
+            </div>
+        </form>
+    </div>
+</div>
+

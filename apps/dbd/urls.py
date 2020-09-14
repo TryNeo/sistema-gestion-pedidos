@@ -7,10 +7,11 @@ from apps.dbd.views.producto.views import *
 from apps.dbd.views.proveedor.views import *
 from apps.dbd.views.dashboard.views import *
 from apps.dbd.views.categoria.views import *
+from apps.dbd.views.reportes.reporte_pedido import *
 from apps.dbd.views.reportes.reporte_proveedor import *
 from apps.dbd.views.reportes.reporte_producto import *
 from apps.dbd.views.errors.views import *
-
+from apps.dbd.views.pedido.views import *
 urlpatterns = [
     #----------------------LOGIN-------------------------------------#
     path('', DashboardView.as_view(), name='dashboard'),
@@ -41,10 +42,16 @@ urlpatterns = [
     path('producto/delete/<int:pk>',ProductoDeleteView.as_view(),name="producto_delete"),
 
     #-----------------------PEDIDO---------------------------------# 
+    path('pedido/',PedidoListView.as_view(),name="pedido_list"),
+    path('pedido/new/',pedidosdetalle,name="pedido_new"),
+    path('pedido/edit/<int:id_pedido>',pedidosdetalle,name="pedido_edit"),
+    path('pedido/<int:id_pedido>/delete/<int:pk>',PedidoItemDelete.as_view(),name="pedido_delete_item"),
 
     #-----------------------REPORTES---------------------------------# 
     path('reporte/proveedor/',ReporteProveedorPdf.as_view(),name="reporte_proveedor"),
     path('reporte/producto/',ReporteProductoPdf.as_view(),name="reporte_producto"),
+    path('reporte/pedido/',ReportePedidoPdf.as_view(),name="reporte_pedido"),
+    path('reporte/pedido/cliente/<int:id_pedido>',ReportePedidoClientePdf,name="reporte_pedido_cliente"),
 
     #----------------------SEGURIDAD------------------------------------#
     path('usuarios/',UserListView.as_view(),name="usuario_list"),

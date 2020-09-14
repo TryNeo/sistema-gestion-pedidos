@@ -37,7 +37,7 @@
             <div class="card-body">
                 <div class="d-inline-block">
                     <h5 class="text-muted">Pedidos</h5>
-                    <h2 class="mb-0">0</h2>
+                    <h2 class="mb-0">{{pedido}}</h2>
                 </div>
                 <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
                     <i class=" fas fa-cart-plus fa-fw fa-sm text-success"></i>
@@ -95,6 +95,45 @@
             </div>
             <div class="card-footer text-center">
             <a href="{% url 'dbd:producto_list' %}" class="btn-primary-link">Ver todo los Productos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Nuevos Pedidos</h5>
+            <div class="card-body p-0">
+                {% if pedidos %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-light">
+                            <tr class="border-0">
+                                <th class="border-0">ID</th>
+                                <th class="border-0">N* Pedido</th>
+                                <th class="border-0">Cliente</th>
+                                <th class="border-0">Estado Pedido</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for ped in pedidos  %}
+                                    <tr>
+                                        <td>{{ped.id_pedido}}</td>
+                                        <td>{{ped.num_pedido}}</td>
+                                        <td>{{ped.cliente}}</td>
+                                        <td>{{ped.estado_pedido}}</td>
+                                    </tr>
+                                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                    <li class="traffic-sales-content list-group-item ">
+                    <span class="traffic-sales-name">No hay nuevos pedidos agregados <i class="fas fa-frown"></i></span>
+                    </li>
+                {% endif %}
+            </div>
+            <div class="card-footer text-center">
+            <a href="{% url 'dbd:pedido_list' %}" class="btn-primary-link">Ver todo los Pedidos</a>
             </div>
         </div>
     </div>

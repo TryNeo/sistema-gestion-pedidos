@@ -70,9 +70,11 @@
                             <li class="nav-item ">
                                 <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'dbd:dashboard' %}"><i class="fas fa-home"></i>Dashboard</a>
                             </li>
+                            {% if perms.dbd.view_pedido %}
                             <li class="nav-item">
                                 <a class="nav-link {% if request.path == '/dashboard/pedido/' %}active{% endif %}" href="{% url 'dbd:pedido_list' %}"><i class="fa fa-shopping-cart"></i> Pedidos</a>
                             </li>
+                            {% endif %}
                             {% if perms.dbd.view_cliente %}
                             <li class="nav-item">
                                 <a class="nav-link  {% if request.path == '/dashboard/cliente/' %}active{% endif %}" href="{% url 'dbd:cliente_list'%}"><i class="fas fa-users"></i>Clientes</a>

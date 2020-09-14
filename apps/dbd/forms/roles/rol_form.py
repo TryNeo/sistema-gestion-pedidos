@@ -23,7 +23,7 @@ class GroupForm(forms.ModelForm):
     def clean(self):
         try:
             grou = Group.objects.get(
-                    nombre = self.cleaned_data["name"]
+                    name = self.cleaned_data["name"]
                 )
             if not self.instance.pk:
                 raise forms.ValidationError("Registro ya existente")

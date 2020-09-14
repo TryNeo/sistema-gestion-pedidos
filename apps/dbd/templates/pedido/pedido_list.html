@@ -12,13 +12,12 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
-    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
-        <a href="#" onclick="return abrir_modal('{% url 'dbd:proveedor_new' %}')"  class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
-        Agregar Proveedor</a>
+    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <a href="{% url 'dbd:pedido_new' %}"  class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>Agregar Pedido</a>        
     </div>
     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-        <a href="{% url 'dbd:reporte_proveedor' %}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"></i>
-        Imprimir Proveedores</a>
+        <a href="{% url 'dbd:reporte_pedido' %}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"></i>
+        Imprimir Pedidos</a>
     </div>
 </div>
 <hr>
@@ -30,34 +29,32 @@
               <table  class="table table-striped" style="width:100%">
                   <thead>
                     <th>ID</th>
-                    <th>Proveedor</th>
-                    <th>Ruc</th>
-                    <th>Correo</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
-                    <th>Estado</th>
+                    <th>N* Pedido</th>
+                    <th>Fecha Pedido</th>
+                    <th>Estado Pedido</th>
+                    <th>Forma Pago</th>
+                    <th>Subtotal</th>
+                    <th>Iva</th>
+                    <th>Total</th>
                     <th class="all">Opciones</th>
                   </thead>
                   <tbody>
-                  {% for pro in proveedor_l %}
-                    <tr>
-                      <td>{{pro.id_proveedor}}</td>
-                      <td>{{pro.nombre}}</td>
-                      <td>{{pro.ruc}}</td>
-                      <td>{{pro.correo}}</td>
-                      <td>{{pro.direccion}}</td>
-                      <td>{{pro.telefono}}</td>
-                      <td>{% if pro.estado %}
-                      <span class="label label-success">Activo</span>
-                      {% else %}
-                      <span class="label label-danger">Inactivo</span>
-                      {% endif %} </td>
-                        <td>
-                            <button type="button" class="btn btn-success btn-circle"  onclick="return abrir_modal('{% url 'dbd:proveedor_consult' pro.id_proveedor %}')" ><i class="fa fa-handshake"></i></button>
-                            <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:proveedor_edit' pro.id_proveedor %}')" ><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:proveedor_delete' pro.id_proveedor %}')" ><i class="far fa-thumbs-down"></i></button>
-                        </td>
-                    </tr>
+                  {% for ped in pedido_l %}
+                  <tr>
+                    <td>{{ped.id_pedido}}</td>
+                    <td>{{ped.num_pedido}}</td>
+                    <td>{{ped.fecha_pedido|date:'d/m/Y'}}</td>
+                    <td>{{ped.estado_pedido}}</td>
+                    <td>{{ped.forma_pago}}</td>
+                    <td>{{ped.subtotal}}</td>
+                    <td>{{ped.iva}}</td>
+                    <td>{{ped.total}}</td>
+                    <td>
+                      <a href="{% url 'dbd:pedido_edit' ped.id_pedido %}" class="btn btn-info btn-circle"  ><i class="fa fa-edit"></i></button>
+                      <a href="{% url 'dbd:reporte_pedido_cliente' ped.id_pedido %}" class="btn btn-dark btn-circle" target="_blank" ><i class="fas fa-file-pdf"></i></button>
+                      <a href="#" class="btn btn-danger btn-circle"  ><i class=" fas fa-cog"></i></button>
+                    </td>
+                  </tr>
                   {% endfor %}
                   </tbody>
               </table>
