@@ -28,11 +28,11 @@
               <div class="table-responsive">
               <table  class="table table-striped" style="width:100%">
                   <thead>
-                    <th>ID</th>
                     <th>N* Pedido</th>
                     <th>Fecha Pedido</th>
                     <th>Estado Pedido</th>
                     <th>Forma Pago</th>
+                    <th>Estado</th>
                     <th>Subtotal</th>
                     <th>Iva</th>
                     <th>Total</th>
@@ -41,18 +41,23 @@
                   <tbody>
                   {% for ped in pedido_l %}
                   <tr>
-                    <td>{{ped.id_pedido}}</td>
                     <td>{{ped.num_pedido}}</td>
                     <td>{{ped.fecha_pedido|date:'d/m/Y'}}</td>
                     <td>{{ped.estado_pedido}}</td>
                     <td>{{ped.forma_pago}}</td>
+                    <td>{% if ped.estado %}
+                    <span class="label label-success">Activo</span>
+                      {% else %}
+                      <span class="label label-danger">Inactivo</span>
+                      {% endif %}</td>
                     <td>{{ped.subtotal}}</td>
                     <td>{{ped.iva}}</td>
                     <td>{{ped.total}}</td>
                     <td>
-                      <a href="{% url 'dbd:pedido_edit' ped.id_pedido %}" class="btn btn-info btn-circle"  ><i class="fa fa-edit"></i></button>
+                      <a href="{% url 'dbd:pedido_edit' ped.id_pedido %}" class="btn btn-info btn-circle"  ><i class="fas fa-cog"></i></button>
                       <a href="{% url 'dbd:reporte_pedido_cliente' ped.id_pedido %}" class="btn btn-dark btn-circle" target="_blank" ><i class="fas fa-file-pdf"></i></button>
-                      <a href="#" class="btn btn-danger btn-circle"  ><i class=" fas fa-cog"></i></button>
+                      <a href="#" onclick="return abrir_modal('{% url 'dbd:pedido_status' ped.id_pedido %}')"  class="btn btn-danger btn-circle"  ><i class=" fas fa-edit"></i></button>
+                      <a href="#" onclick="return abrir_modal('{% url 'dbd:pedido_delete' ped.id_pedido %}')"  class="btn btn-warning btn-circle"  ><i class=" fas fa-trash"></i></button>
                     </td>
                   </tr>
                   {% endfor %}

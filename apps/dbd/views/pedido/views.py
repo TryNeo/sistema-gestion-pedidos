@@ -28,6 +28,22 @@ class PedidoListView(LoginRequiredMixin,Privilegios,ListView):
         context['titulo'] = 'Listado de Pedido'
         return context
 
+class PedidoUpdateView(LoginRequiredMixin,Privilegios,UpdateView):
+    model = Pedido
+    permission_required = "dbd.change_pedido"
+    form_class = PedidoForm
+    context_object_name = 'obj'
+    success_url = reverse_lazy('dbd:pedido_list')
+    template_name = "pedido/pedido_update.html"
+
+    def form_valid(self, form):
+        form.instance.usuario_modifica =  self.request.user
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Estado  del Pedido'
+        return context
 
 @login_required(login_url="/")
 @permission_required("dbd.view_pedido",login_url="dbd:privilegios")
@@ -136,3 +152,24 @@ class PedidoItemDelete(LoginRequiredMixin,Privilegios,DeleteView):
     def get_success_url(self):
         id_pedido = self.kwargs['id_pedido']
         return reverse_lazy('dbd:pedido_edit',kwargs={'id_pedido':id_pedido})
+
+class PedidoDeleteView(LoginRequiredMixin,Privilegios,DeleteView):
+    model = Pedido
+    permission_required = "dbd.delete_pedido"
+    context_object_name = 'obj'
+    template_name = "pedido/pedido_delete.html"
+
+    def form_valid(self, form):
+        form.instance.usuario_modifica =  self.request.user
+        return super().form_valid(form)
+
+    def post(self,request,pk,*args, **kwargs):
+        pedido = Pedido.objects.get(id_pedido=pk)
+        pedido.estado = False
+        pedido.save()
+        return redirect('dbd:pedido_list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Eliminacion de Pedido'
+        return context

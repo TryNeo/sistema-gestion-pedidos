@@ -45,6 +45,8 @@ urlpatterns = [
     path('pedido/',PedidoListView.as_view(),name="pedido_list"),
     path('pedido/new/',pedidosdetalle,name="pedido_new"),
     path('pedido/edit/<int:id_pedido>',pedidosdetalle,name="pedido_edit"),
+    path('pedido/estado/<int:pk>',PedidoUpdateView.as_view(),name="pedido_status"),
+    path('pedido/delete/<int:pk>',PedidoDeleteView.as_view(),name="pedido_delete"),
     path('pedido/<int:id_pedido>/delete/<int:pk>',PedidoItemDelete.as_view(),name="pedido_delete_item"),
 
     #-----------------------REPORTES---------------------------------# 
