@@ -72,7 +72,7 @@
                                 <th class="border-0">ID</th>
                                 <th class="border-0">Imagen</th>
                                 <th class="border-0">Producto</th>
-                                <th class="border-0">Precio</th>
+                                <th class="border-0">Costo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -81,7 +81,7 @@
                                         <td>{{pro.id_producto}}</td>
                                         <td><div class="m-r-10"><img src="{{pro.get_image}}" class="rounded" width="39"></div></td>
                                         <td>{{pro.nombre|upper}}</td>
-                                        <td>${{pro.precio}}</td>
+                                        <td>${{pro.costo}}</td>
                                     </tr>
                                 {% endfor %}
                         </tbody>
