@@ -6,7 +6,6 @@ Projecto Reto - [3/A]
 ![Alt text](https://i.imgur.com/yzyeorJ.png)
 ![Alt text](https://i.imgur.com/v4QMixK.png)
 ![Alt text](https://i.imgur.com/Yl54EqO.png)
-![Alt text](https://i.imgur.com/v4QMixK.png)
 
 # Entorno Virutal
 
