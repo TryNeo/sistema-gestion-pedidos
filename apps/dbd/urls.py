@@ -55,6 +55,8 @@ urlpatterns = [
     path('reporte/pedido/',ReportePedidoPdf.as_view(),name="reporte_pedido"),
     path('reporte/pedido/cliente/<int:id_pedido>',ReportePedidoClientePdf,name="reporte_pedido_cliente"),
 
+    #-----------------------PEDIDO---------------------------------# 
+    path('historial/',HistorialView.as_view(),name="historial_list"),
     #----------------------SEGURIDAD------------------------------------#
     path('usuarios/',UserListView.as_view(),name="usuario_list"),
     path('usuarios/new/',UserCreateView.as_view(),name="usuario_new"),

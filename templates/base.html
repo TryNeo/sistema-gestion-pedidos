@@ -102,6 +102,9 @@
                                 <a class="nav-link {% if request.path == '/dashboard/proveedor/' %}active{% endif %} " href="{% url 'dbd:proveedor_list' %}"><i class="fas fa-dolly-flatbed"></i>Proveedores</a>
                             </li>
                             {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == '/dashboard/historial/' %}active{% endif %}" href="{% url 'dbd:historial_list' %}"><i class="fa fa-history" aria-hidden="true"></i>Historial</a>
+                            </li>
                             <li class="nav-divider">
                                 Seguridad
                             </li>

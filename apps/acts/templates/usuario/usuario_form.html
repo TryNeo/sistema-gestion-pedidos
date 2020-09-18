@@ -72,13 +72,19 @@ $(function() {
     $("form").submit(function(e){
         e.preventDefault();
         /*capturamos la data del formulario*/
-        var formData= $("form").serializeArray(); /*nos devuelve un array con los respectivos datos del form*/
+        /*var formData= $("form").serializeArray(); /*nos devuelve un array con los respectivos datos del form*/
+        var parameters = new FormData(this);
 
+        parameters.forEach(function(value,key){
+            console.log(key+':'+value);
+        });
         $.ajax({
             url:url,
             method:"POST",
             headers:{'x-CSRFToken':token},
-            data :formData
+            data :parameters,
+            processData: false,
+            contentType:false,
         })
         .done(function(r,textStatus,xhr){ /*preguntaremos si se ejecuto bien*/
             if(xhr.status = 200){ /*preguntaremos por el status */

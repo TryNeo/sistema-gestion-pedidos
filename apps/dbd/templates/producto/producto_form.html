@@ -28,17 +28,17 @@
                         <label class="col-3 col-lg-4 col-form-label text-right">{{form.existencia.label}}</label>
                         {{form.existencia}}
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.estado.label}}</label>
-                        {{form.estado}}
-                    </div>
-                    <div class="form-group col-md-5 mb-3 ">
+                    <div class="custom-control col-md-8 mb-3">
                         {% if obj %}
                         {{form.imagen}}
                         {% else %}
-                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.imagen.label}}</label>
-                        {{form.imagen}}
+                        <label class="col-3 col-lg-4 col-form-label text-right">{{form.imagen.label}}</label>
+                        {{form.imagen|add_class:'form-control-file'}}
                         {% endif %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-3 col-form-label text-right">{{form.estado.label}}</label>
+                        {{form.estado}}
                     </div>
                     <div class="form-group col-md-9 mb-3">
                         <label class="col-3 col-lg-3 col-form-label text-right">{{form.descripcion.label}}</label>
@@ -70,13 +70,20 @@ $(function() {
     $("form").submit(function(e){
         e.preventDefault();
         /*capturamos la data del formulario*/
-        var formData= $("form").serializeArray(); /*nos devuelve un array con los respectivos datos del form*/
+        /*var formData= $("form").serializeArray(); /*nos devuelve un array con los respectivos datos del form*/
+        var parameters = new FormData(this);
+
+        parameters.forEach(function(value,key){
+            console.log(key+':'+value);
+        });
 
         $.ajax({
             url:url,
             method:"POST",
             headers:{'x-CSRFToken':token},
-            data :formData
+            data :parameters,
+            processData: false,
+            contentType: false,
         })
         .done(function(r,textStatus,xhr){ /*preguntaremos si se ejecuto bien*/
             if(xhr.status = 200){ /*preguntaremos por el status */

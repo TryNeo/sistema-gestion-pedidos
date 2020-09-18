@@ -11,7 +11,7 @@ import datetime
 from apps.dbd.modelos.estructura_model_producto import Producto
 from apps.dbd.modelos.esctructura_model_cliente import Cliente
 from apps.dbd.modelos.estructura_model_pedido import Pedido,PedidoItem
-from apps.dbd.forms.pedido.pedido_form import PedidoForm
+from apps.dbd.forms.pedido.pedido_form import PedidoForm,PedidoEditForm
 from apps.dbd.views.mixin.mixin import MixinFormInvalid
 from apps.dbd.views.errors.views import Privilegios
 
@@ -31,7 +31,7 @@ class PedidoListView(LoginRequiredMixin,Privilegios,ListView):
 class PedidoUpdateView(LoginRequiredMixin,Privilegios,UpdateView):
     model = Pedido
     permission_required = "dbd.change_pedido"
-    form_class = PedidoForm
+    form_class = PedidoEditForm
     context_object_name = 'obj'
     success_url = reverse_lazy('dbd:pedido_list')
     template_name = "pedido/pedido_update.html"

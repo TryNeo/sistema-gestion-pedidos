@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{titulo}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header" id="top">
+            <h2 class="pageheader-title text-center">{{titulo}}</h2>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+              <table class="table table-striped" style="width:100%">
+                  <thead>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Creacion</th>
+                    <th>Fecha C.</th>
+                    <th>Fecha M.</th>
+                  </thead>
+                  <tbody>
+                  {% for pro in productos %}
+                    <tr>
+                    <td>{{pro.id_producto}}</td>
+                    <td>{{pro.usuario_crea}}</td>
+                    <td>{{pro.nombre}}</td>
+                    <td>{{pro.fecha_crea|date:'d/m/Y'}}</td>
+                    <td>{{pro.fecha_modifica|date:'d/m/Y'}}</td>
+                    </tr>
+                  {% endfor %}
+                  {% for cli in clientes  %}
+                    <tr>
+                    <td>{{cli.id_cliente}}</td>
+                    <td>{{cli.usuario_crea}}</td>
+                    <td>{{cli.nombre}} {{cli.apellido}} </td>
+                    <td>{{cli.fecha_crea|date:'d/m/Y'}}</td>
+                    <td>{{cli.fecha_modifica|date:'d/m/Y'}}</td>
+                    </tr>
+                  {% endfor %}
+                 {% for cate in categorias  %}
+                    <tr>
+                    <td>{{cate.id_categoria}}</td>
+                    <td>{{cate.usuario_crea}}</td>
+                    <td>{{cate.nombre}}</td>
+                    <td>{{cate.fecha_crea|date:'d/m/Y'}}</td>
+                    <td>{{cate.fecha_modifica|date:'d/m/Y'}}</td>
+                    </tr>
+                  {% endfor %}
+                {% for prov in proveedores  %}
+                    <tr>
+                    <td>{{prov.id_proveedor}}</td>
+                    <td>{{prov.usuario_crea}}</td>
+                    <td>{{prov.nombre}}</td>
+                    <td>{{prov.fecha_crea|date:'d/m/Y'}}</td>
+                    <td>{{prov.fecha_modifica|date:'d/m/Y'}}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+  $('.table').DataTable({
+    "language": {
+      "sProcessing": "Procesando...",
+      "sLengthMenu": "Mostrar _MENU_ registros",
+      "sZeroRecords": "No se encontraron resultados",
+      "sEmptyTable": "Ningún dato disponible en esta tabla",
+      "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+      "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+      "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+      "sInfoPostFix": "",
+      "sSearch": "Buscar:",
+      "sUrl": "",
+      "sInfoThousands": ",",
+      "sLoadingRecords": "Cargando...",
+      "oPaginate": {
+          "sFirst": "<span class='fa fa-angle-double-left'></span>",
+          "sLast": "<span class='fa fa-angle-double-right'></span>",
+          "sNext": "<span class='fa fa-angle-right'></span>",
+          "sPrevious": "<span class='fa fa-angle-left'></span>"
+      },
+      "oAria": {
+          "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+      }
+    }
+  });
+});
+</script>
+{% endblock extra_js %}

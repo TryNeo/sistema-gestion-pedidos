@@ -6,8 +6,15 @@
                 <h5 class="modal-title" >{{titulo}}</h5>
             </div>
             <div class="modal-body">
-                <div class="card-body ">
-                    {{form.as_p}}
+                <div class="card-body row">
+                     <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-8 col-form-label text-right">{{form.num_pedido.label}}</label>
+                        {{form.num_pedido}}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-5 col-form-label text-right">{{form.cliente.label}}</label>
+                        {{form.cliente}}
+                    </div>
                 </div>
             </div>             
             <div class="modal-footer">
