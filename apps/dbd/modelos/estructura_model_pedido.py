@@ -35,7 +35,7 @@ class Pedido(models.Model):
         return '{}'.format(self.num_pedido)
     
     def save(self):
-        self.total = self.subtotal * (self.iva/100)
+        self.total = self.subtotal + self.iva
         super(Pedido,self).save()
 
 
@@ -63,7 +63,8 @@ class PedidoItem(models.Model):
 
     def save(self):
         self.subtotal = float(float(int(self.cantidad)) * float(self.precio))
-        self.total = float(float(int(self.subtotal)) * float(int(self.iva)/100))
+        self.iva = float(float(int(self.subtotal)))* float(int(self.iva)/100)
+        self.total = self.subtotal+self.iva
         super(PedidoItem,self).save()
 
 

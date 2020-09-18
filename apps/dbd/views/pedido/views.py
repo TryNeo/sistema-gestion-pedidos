@@ -76,7 +76,8 @@ def pedidosdetalle(request,id_pedido=None):
         contexto = {'productos':prod,'enca_ped':ped,'ped_detalle':ped_det,'form_enc':form_pedido_detalle} #al final pasamos 4 variables a nuestro contexto
 
     if request.method == 'POST':#comprobamos si lo hace por el metodo post
-            #obtenemos nuesta data del form
+        form_pedido_detalle = PedidoForm(request.POST)
+        if form_pedido_detalle.is_valid():#obtenemos nuesta data del form
             fecha_pedido = request.POST.get("fecha_pedido")
             forma_pago = request.POST.get("forma_pago")
             estado_pedido = request.POST.get("estado_pedido")
@@ -140,6 +141,9 @@ def pedidosdetalle(request,id_pedido=None):
                 enc.save() # y guardamos
             
             return redirect("dbd:pedido_edit",id_pedido=id_pedido) # y redirecionamos al edit una vez que todo haya editado o haya agregado un nuevo item
+        else:
+            print(form_pedido_detalle.errors)
+            return redirect("dbd:pedido_new")
     return render(request,template_name,contexto)
 
 

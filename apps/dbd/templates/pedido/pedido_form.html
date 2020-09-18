@@ -263,7 +263,7 @@ Creacion Pedido
         iva = iva >(cant*prec) ? 0 : iva;
 
         stotal = cant * prec;
-        total = stotal * (iva/100);
+        total = stotal+(stotal * (iva/100))
 
         $('#id_cantidad_detalle').val(cant);
         $('#id_precio_detalle').val(prec);
@@ -292,5 +292,23 @@ Creacion Pedido
     }
 
     $("#id_cliente").focus();
+</script>
+<script type="application/javascript">
+{% if form.errors %}
+    var errors = '';
+        {% for field in form %}
+            {% for error in field.errors %}
+                errors += '{{ error }}\n';
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            errors += '{{ error }}\n';
+        {% endfor %}
+        Swal.fire({
+            title: 'Error!',
+            text: errors,
+            icon: 'error'
+        });
+{% endif %}
 </script>
 {% endblock extra_js %}
