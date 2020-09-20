@@ -91,12 +91,12 @@ DATABASES = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bd_gestion',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'bd_gestio',
         'USER': 'root',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
-        'PORT': 3306,
+        'PORT': 5432,
     }
 }
 # Password validation
