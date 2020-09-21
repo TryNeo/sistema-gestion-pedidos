@@ -21,49 +21,52 @@
               <div class="table-responsive">
               <table class="table table-striped" style="width:100%">
                   <thead>
-                    <th>ID</th>
                     <th>Usuario</th>
-                    <th>Creacion</th>
+                    <th>Creacion/Modificacion - ID</th>
                     <th>Fecha C.</th>
                     <th>Fecha M.</th>
                   </thead>
                   <tbody>
                   {% for pro in productos %}
                     <tr>
-                    <td>{{pro.id_producto}}</td>
                     <td>{{pro.usuario_crea}}</td>
-                    <td>{{pro.nombre}}</td>
+                    <td>{{pro.id_producto}}</td>
                     <td>{{pro.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{pro.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
                   {% endfor %}
                   {% for cli in clientes  %}
                     <tr>
-                    <td>{{cli.id_cliente}}</td>
                     <td>{{cli.usuario_crea}}</td>
-                    <td>{{cli.nombre}} {{cli.apellido}} </td>
+                    <td>{{cli.id_cliente}}</td>
                     <td>{{cli.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{cli.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
                   {% endfor %}
                  {% for cate in categorias  %}
                     <tr>
-                    <td>{{cate.id_categoria}}</td>
                     <td>{{cate.usuario_crea}}</td>
-                    <td>{{cate.nombre}}</td>
+                    <td>{{cate.id_categoria}}</td>
                     <td>{{cate.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{cate.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
                   {% endfor %}
                 {% for prov in proveedores  %}
                     <tr>
-                    <td>{{prov.id_proveedor}}</td>
                     <td>{{prov.usuario_crea}}</td>
-                    <td>{{prov.nombre}}</td>
+                    <td>{{prov.id_proveedor}}</td>
                     <td>{{prov.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{prov.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
                   {% endfor %}
+                  {% for ped in pedidos  %}
+                  <tr>
+                  <td>{{ped.usuario_crea}}</td>
+                  <td>{{ped.id_pedido}}</td>
+                  <td>{{ped.fecha_crea|date:'d/m/Y'}}</td>
+                  <td>{{ped.fecha_modifica|date:'d/m/Y'}}</td>
+                  </tr>
+                {% endfor %}
                   </tbody>
               </table>
               </div>

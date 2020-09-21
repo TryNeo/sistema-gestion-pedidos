@@ -8,6 +8,7 @@ from apps.dbd.modelos.esctructura_model_cliente import Cliente
 from apps.dbd.modelos.estructura_model_producto import Producto
 from apps.dbd.modelos.estructura_model_proveedor import Proveedor
 from apps.dbd.modelos.estructura_model_pedido import Pedido
+from apps.dbd.modelos.estructura_model_pedido import Pedido
 
 class DashboardView(LoginRequiredMixin,TemplateView):
     template_name = 'dashboard/index.html'
@@ -30,7 +31,8 @@ class HistorialView(LoginRequiredMixin,TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Historial | '
+        context['titulo'] = 'Historial | Registros - Cambios'
+        context['pedidos'] = Pedido.objects.all()
         context['productos'] = Producto.objects.all()
         context['clientes'] = Cliente.objects.all()
         context['categorias'] = Categoria.objects.all()
