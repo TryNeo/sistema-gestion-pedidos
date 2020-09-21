@@ -18,38 +18,52 @@
 				font-weight: bolder;
 				text-transform: uppercase;
 			}
+
+			table thead tr th {
+				text-align: left;
+				border-bottom: 1px solid black;
+				border-top: 1px solid black;
+				padding-top: 5px;
+			}
+			table thead tr {
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			table tbody tr {
+				padding: 0;
+			}
 		</style>
 	</head>
 	<body>
 		<header class="header">
 			<div class="container">
 				<div class="titulo">
-					<h1>{{ datos.empresa|upper }}</h1>
+					{{ datos.empresa|upper }}<br>
+					{{datos.ruc}}<br>
 				</div>
-				<div class="subtitulo">
-					<div>
-						
-					</div>
-				</div>
+				<p>
+					<b>IMPRIMIDO POR:</b> {{ user.first_name|upper }} {{user.last_name|upper}}<br>
+					<b>TELEFONO:</b> {{datos.telefono}}<br>
+					<b>DIRECCION:</b> {{datos.direccion}}<br>
+					<b>FECHA IMPRIMIDA:</b> {{ today }}<br>
+				</p>
 			</div>
 		</header>
 		<div>
 			<div>
-
-			</div>
-			<div>
 				<table >
-					<thead >
-						<th>ID</th>
+					<thead style="font-size: 10px;">
+						<th style="width: 5%;">ID</th>
 						<th>RUC</th>
-						<th>Nombre</th>
-						<th>Descripcion</th>
-						<th>Correo</th>
-						<th>telefono</th>
+						<th>NOMBRE</th>
+						<th>DESCRIPCION</th>
+						<th>CORREO</th>
+						<th style="width: 10%;">TELEFONO</th>
 					</thead>
 					<tbody>
 						{% for proveedor in proveedores %}
-							<tr>
+							<tr style="padding-top: 5px;font-size: 10px;">
 								<td>{{proveedor.id_proveedor}}</td>
 								<td>{{proveedor.ruc}}</td>
 								<td>{{proveedor.nombre}}</td>
@@ -58,6 +72,9 @@
 								<td>{{proveedor.telefono}}</td>
 							</tr>
 						{% endfor %}
+						<tr style="padding-top: 15px;">
+							<td colspan="6" style="text-align: right;font-size: 12px;"><b>TOTAL DE PROVEEDORES:{{total_proveedores}}</b></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
