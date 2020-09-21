@@ -16,7 +16,7 @@
     
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/tejido.ico' %}">
     <script src="{% static 'libs/sweetalert/sweetalert2.all.min.js' %}"></script>
-
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     {% block extra_css %}
     {% endblock extra_css %}
 </head>
@@ -164,10 +164,10 @@
     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'vendor/datatables/datatables-demo.js' %}"></script>
 
-    
+
     <script src="{% static 'libs/sweetalert/sweetalert2.all.min.js' %}"></script>
 
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     {% block control_modal %}
         <script>
@@ -195,8 +195,6 @@
               });
             }
 
-            
-            
         </script>
     {% endblock control_modal %}
 
