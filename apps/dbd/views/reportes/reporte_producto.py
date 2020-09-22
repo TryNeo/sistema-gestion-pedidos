@@ -22,7 +22,7 @@ class ReporteProductoPdf(LoginRequiredMixin,View):
             context = {
                     'user': self.request.user,
                     'today':today,
-                    'datos':{'empresa':'Asoproteseu S.A','telefono':'099-8364-0298','ruc':'1790004104001'},
+                    'datos':{'empresa':'Asoproteseu S.A','telefono':'099-8364-0298','ruc':'1790004104001','direccion':'PORTETE NRO.6407 ENTRE LA 37 Y LA 38'},
                     'productos':productos,
                     'total_productos':total_productos
             }
