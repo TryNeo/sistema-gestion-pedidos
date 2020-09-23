@@ -1,12 +1,10 @@
 asgiref==3.2.10
-cymysql==0.9.14
 Django==3.0.4
-django-cymysql==2.0.0
 django-widget-tweaks==1.4.8
 html5lib==1.1
-mysqlclient==2.0.1
 Pillow==7.2.0
 pkg-resources==0.0.0
+psycopg2==2.8.6
 PyPDF2==1.26.0
 pytz==2020.1
 reportlab==3.5.48
