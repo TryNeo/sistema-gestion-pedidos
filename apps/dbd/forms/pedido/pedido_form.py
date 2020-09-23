@@ -37,6 +37,12 @@ class PedidoEditForm(forms.ModelForm):
 
     class Meta:
         model = Pedido
-        fields = ['num_pedido','cliente','nota','forma_pago','estado_pedido','fecha_pedido']
-        exclude = ['subtotal','iva','total']
-
+        fields = ['num_pedido','cliente','nota','forma_pago','estado_pedido']
+        exclude = ['subtotal','iva','total','fecha_pedido']
+        labels = {
+            'num_pedido':'N* Pedido:',
+            'cliente':'Cliente:',
+            'nota':'Comentarios o instruciones:',
+            'forma_pago':'Forma Pago:',
+            'estado_pedido':'Estado Pedido:',
+        }

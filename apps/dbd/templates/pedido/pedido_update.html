@@ -1,3 +1,4 @@
+{% load widget_tweaks %}
 <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
         <form method="POST" role="form" class="form-inline" action="{% url 'dbd:pedido_status' obj.pk %}">
@@ -14,6 +15,18 @@
                     <div class="col-md-6 mb-3">
                         <label class="col-3 col-lg-5 col-form-label text-right">{{form.cliente.label}}</label>
                         {{form.cliente}}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-8 col-form-label text-right">{{form.estado_pedido.label}}</label>
+                        {{form.estado_pedido}}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="col-3 col-lg-8 col-form-label text-right">{{form.forma_pago.label}}</label>
+                        {{form.forma_pago}}
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="col-1 col-lg-8 col-form-label text-right">{{form.nota.label}}</label>
+                        {{form.nota|attr:'rows:2'|attr:'cols:40'}}
                     </div>
                 </div>
             </div>             
