@@ -18,27 +18,71 @@
 				font-weight: bolder;
 				text-transform: uppercase;
 			}
+
+			table thead tr th {
+				text-align: left;
+				border-bottom: 1px solid black;
+				border-top: 1px solid black;
+				padding-top: 5px;
+			}
+			table thead tr {
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			table tbody tr {
+				padding: 0;
+			}
 		</style>
 	</head>
 	<body>
 		<header class="header">
 			<div class="container">
 				<div class="titulo">
-					<h1>{{ datos.empresa|upper }}</h1>
+					{{ datos.empresa|upper }}<br>
+					{{datos.ruc}}<br>				
 				</div>
+				<p>
+					<b>IMPRIMIDO POR:</b> {{ user.first_name|upper }} {{user.last_name|upper}}<br>
+					<b>TELEFONO:</b> {{datos.telefono}}<br>
+					<b>DIRECCION:</b> {{datos.direccion}}<br>
+					<b>FECHA IMPRIMIDA:</b> {{ today }}<br>
+				</p>
 			</div>
 		</header>
 		<div>
 			<div>
-
-			</div>
-			<div>
 				<table>
-					<thead>
-						<th>ID</th>
+					<thead style="font-size: 10px;">
+						<th style="width: 5%;">ID</th>
+						<th>N*PEDIDO</th>
+						<th>CLIENTE</th>
+						<th>FECHA PEDIDO</th>
+						<th>ESTADO PEDIDO</th>
+						<th>FORMA PAGO</th>
+						<th>SUBTOTAL</th>
+						<th>IVA</th>
+						<th  style="width: 8%;">TOTAL</th>
 					</thead>
 					<tbody>
-
+						{% for ped in pedido %}
+						  <tr style="padding-top: 5px;font-size: 10px;">
+							  <td>{{ped.id_pedido}}</td>
+							  <td>{{ped.num_pedido}}</td>
+							  <td>{{ped.cliente}}</td>
+							  <td>{{ped.fecha_pedido|date:'d/m/Y'}}</td>
+							  <td>{{ped.estado_pedido}}</td>
+							  <td>{{ped.forma_pago}}</td>
+							  <td>{{ped.subtotal}}</td>
+							  <td>{{ped.iva}}</td>
+							  <td>{{ped.total}}</td>
+							</tr>
+						{% endfor %}
+						<tr style="border-top: 1px solid black; padding-top: 5px;">
+						</tr>
+						<tr style="padding-top: 15px;">
+							<td colspan="9	" style="text-align: right;font-size: 12px;"><b>TOTAL DE PEDIDOS:</b>{{total_pedido}}</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
