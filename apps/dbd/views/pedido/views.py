@@ -76,20 +76,19 @@ def pedidosdetalle(request,id_pedido=None):
         contexto = {'productos':prod,'enca_ped':ped,'ped_detalle':ped_det,'form_enc':form_pedido_detalle} #al final pasamos 4 variables a nuestro contexto
 
     if request.method == 'POST':#comprobamos si lo hace por el metodo post
-        form_pedido_detalle = PedidoForm(request.POST)
-        if form_pedido_detalle.is_valid():#obtenemos nuesta data del form
-            fecha_pedido = request.POST.get("fecha_pedido")
-            forma_pago = request.POST.get("forma_pago")
-            estado_pedido = request.POST.get("estado_pedido")
-            nota = request.POST.get("nota")
-            num_pedido = request.POST.get("num_pedido")
-            cliente = request.POST.get("cliente")
-            subtotal = 0
-            iva = 0
-            total = 0
-            if not id_pedido:
-                cli = Cliente.objects.get(pk=cliente) #filtramos por el cliente
-                enc = Pedido( #y se le pasamos a nuestro modelo 
+        form_pedido_detalle = PedidoForm()
+        fecha_pedido = request.POST.get("fecha_pedido")
+        forma_pago = request.POST.get("forma_pago")
+        estado_pedido = request.POST.get("estado_pedido")
+        nota = request.POST.get("nota")
+        num_pedido = request.POST.get("num_pedido")
+        cliente = request.POST.get("cliente")
+        subtotal = 0
+        iva = 0
+        total = 0
+        if not id_pedido:
+            cli = Cliente.objects.get(pk=cliente) #filtramos por el cliente
+            enc = Pedido( #y se le pasamos a nuestro modelo 
                     fecha_pedido = fecha_pedido,
                     estado_pedido = estado_pedido,
                     forma_pago = forma_pago,
@@ -98,33 +97,33 @@ def pedidosdetalle(request,id_pedido=None):
                     cliente = cli,
                     usuario_crea = request.user
                 )
-                if enc: #comprobamos que todo este correcto
-                    enc.save() # y lo guardamos
-                    id_pedido =  enc.id_pedido #obtenemos el id del pedido accediendo a nuestra cabezera
-            else: 
-                enc = Pedido.objects.filter(pk=id_pedido).first() #filtramos el pedido y obtenemos el primero con .first()
-                if enc: #le pasamos  nuestra variables obtenidas anteriormente del form
-                    enc.fecha_pedido = fecha_pedido
-                    enc.forma_pago = forma_pago
-                    enc.estado_pedido = estado_pedido
-                    enc.nota = nota
-                    enc.num_pedido = num_pedido
-                    enc.usuario_modifica = request.user
-                    enc.save()
-            if not id_pedido:
-                return redirect('dbd:pedido_list')
+            if enc: #comprobamos que todo este correcto
+                enc.save() # y lo guardamos
+                id_pedido =  enc.id_pedido #obtenemos el id del pedido accediendo a nuestra cabezera
+        else: 
+            enc = Pedido.objects.filter(pk=id_pedido).first() #filtramos el pedido y obtenemos el primero con .first()
+            if enc: #le pasamos  nuestra variables obtenidas anteriormente del form
+                enc.fecha_pedido = fecha_pedido
+                enc.forma_pago = forma_pago
+                enc.estado_pedido = estado_pedido
+                enc.nota = nota
+                enc.num_pedido = num_pedido
+                enc.usuario_modifica = request.user
+                enc.save()
+        if not id_pedido:
+            return redirect('dbd:pedido_list')
 
             #obtenemos la data de nuesttro form pedido detalle
-            producto = request.POST.get('id_id_producto_producto')
-            cantidad = request.POST.get('id_cantidad_detalle')
-            precio = request.POST.get('id_precio_detalle')
-            subtotal_detalle = request.POST.get('id_subtotal_detalle')
-            iva_detalle = request.POST.get('id_iva_detalle')
-            total_detalle = request.POST.get('id_total_detalle')
+        producto = request.POST.get('id_id_producto_producto')
+        cantidad = request.POST.get('id_cantidad_detalle')
+        precio = request.POST.get('id_precio_detalle')
+        subtotal_detalle = request.POST.get('id_subtotal_detalle')
+        iva_detalle = request.POST.get('id_iva_detalle')
+        total_detalle = request.POST.get('id_total_detalle')
 
-            pro = Producto.objects.get(pk=producto) #filtramos el producto
+        pro = Producto.objects.get(pk=producto) #filtramos el producto
 
-            det = PedidoItem( #le pasamos nuestra data
+        det = PedidoItem( #le pasamos nuestra data
                 pedido = enc,
                 producto = pro,
                 cantidad = cantidad,
@@ -132,18 +131,16 @@ def pedidosdetalle(request,id_pedido=None):
                 iva = iva_detalle,
 
             )
-            if det:#comprobamos
-                det.save() #guardamos
-                subtotal = PedidoItem.objects.filter(pedido=id_pedido).aggregate(Sum('subtotal')) #filtramos y usamos  Sum para obtener el subtotal total de nuestro items
-                iva =PedidoItem.objects.filter(pedido=id_pedido).aggregate(Sum('iva')) #lo mismo con el iva
-                enc.subtotal = subtotal["subtotal__sum"] 
-                enc.iva=iva["iva__sum"]
-                enc.save() # y guardamos
+        if det:#comprobamos
+            det.save() #guardamos
+            subtotal = PedidoItem.objects.filter(pedido=id_pedido).aggregate(Sum('subtotal')) #filtramos y usamos  Sum para obtener el subtotal total de nuestro items
+            iva =PedidoItem.objects.filter(pedido=id_pedido).aggregate(Sum('iva')) #lo mismo con el iva
+            enc.subtotal = subtotal["subtotal__sum"] 
+            enc.iva=iva["iva__sum"]
+            enc.save() # y guardamos
             
-            return redirect("dbd:pedido_edit",id_pedido=id_pedido) # y redirecionamos al edit una vez que todo haya editado o haya agregado un nuevo item
-        else:
-            print(form_pedido_detalle.errors)
-            return redirect("dbd:pedido_new")
+        return redirect("dbd:pedido_edit",id_pedido=id_pedido) # y redirecionamos al edit una vez que todo haya editado o haya agregado un nuevo item
+
     return render(request,template_name,contexto)
 
 

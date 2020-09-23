@@ -18,14 +18,38 @@
 				font-weight: bolder;
 				text-transform: uppercase;
 			}
+
+			table thead tr th {
+				text-align: left;
+				border-bottom: 1px solid black;
+				border-top: 1px solid black;
+				padding-top: 5px;
+			}
+			table thead tr {
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			table tbody tr {
+				padding: 0;
+			}
 		</style>
 	</head>
 	<body>
 		<header class="header">
 			<div class="container">
 				<div class="titulo">
-					<h1>{{ datos.empresa|upper }}</h1>
+					{{ datos.empresa|upper }}<br>
+					{{datos.ruc}}<br>				
 				</div>
+				<p>
+					<b>FACTURA:</b>{{pedido.num_pedido}}<br>
+					<b>CEDULA:</b>{{pedido.cliente.cedula}}<br>
+					<b>CLIENTE:</b> {{pedido.cliente.nombre}} {{pedido.cliente.apellido}}<br>
+					<b>CORREO:</b> {{pedido.cliente.correo}}<br>
+					<b>FORMA PAGO:</b>{{pedido.forma_pago}}<br>
+					<b>FECHA PEDIDO:</b> {{ pedido.fecha_pedido }}<br>
+				</p>
 			</div>
 		</header>
 		<div>
@@ -34,11 +58,38 @@
 			</div>
 			<div>
 				<table>
-					<thead>
-						<th>ID</th>
+					<thead style="font-size: 10px;">
+						<th style="width: 5%;">ID</th>
+						<th>PRODUCTO</th>
+						<th >CANTIDAD</th>
+						<th >PRECIO</th>
+						<th >SUBTOTAL</th>
+						<th >IVA</th>
+						<th style="width: 6%;">TOTAL</th>
 					</thead>
 					<tbody>
-
+						{% for pedet in pedido_detalle %}
+						  <tr style="padding-top: 5px;font-size: 10px;">
+							  <td>{{pedet.id_pedido_item}}</td>
+							  <td>{{pedet.producto}}</td>
+							  <td>{{pedet.cantidad}}</td>
+							  <td>{{pedet.precio}}</td>
+							  <td>{{pedet.subtotal}}</td>
+							  <td>{{pedet.iva}}</td>
+							  <td>{{pedet.total}}</td>
+						  </tr>
+						{% endfor %}
+						<tr style="border-top: 1px solid black; padding-top: 5px;">
+						</tr>
+						<tr style="padding-top: 7px;">
+							<td colspan="7" style="text-align: right;font-size: 12px;"><b>SUBTOTAL:</b>${{pedido.subtotal}}</td>
+						</tr>
+						<tr style="padding-top: 3px;">
+							<td colspan="7" style="text-align: right;font-size: 12px;"><b>IVA:</b>${{pedido.iva}}</td>
+						</tr>
+						<tr style="padding-top: 3px;">
+							<td colspan="7" style="text-align: right;font-size: 12px;"><b>TOTAL:</b>${{pedido.total}}</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
