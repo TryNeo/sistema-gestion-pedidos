@@ -1,4 +1,4 @@
-from .base import *
+from SistemaGestionPedidos.settings.base import *
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
