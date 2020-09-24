@@ -18,3 +18,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SistemaGestionPedidos.settings.
 from dj_static import  Cling
 
 application = Cling(get_wsgi_application())
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
