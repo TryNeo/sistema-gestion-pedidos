@@ -1,7 +1,7 @@
 from django.db import models
 from apps.acts.models import User
 from apps.dbd.modelos.estructura_model_catalogo import Categoria
-from SistemaGestionPedidos.settings import MEDIA_URL,STATIC_URL
+from SistemaGestionPedidos.settings.base import MEDIA_URL,STATIC_URL
 
 
 class Producto(models.Model):
