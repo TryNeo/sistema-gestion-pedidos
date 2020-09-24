@@ -1,1 +1,1 @@
-web guinicorn SistemaGestionPedidos.wsgi --log-file -
+web: gunicorn SistemaGestionPedidos.wsgi --log-file -
