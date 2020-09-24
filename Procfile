@@ -1,0 +1,1 @@
+web: guinicorn app.wsgi --log-file -
