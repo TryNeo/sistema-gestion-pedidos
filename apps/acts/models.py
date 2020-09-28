@@ -11,7 +11,6 @@ class User(AbstractUser):
             return '{}{}'.format(MEDIA_URL,self.image)
         return '{}{}'.format(STATIC_URL,'images/user.png')
 
-"""
     def save(self, *args, **kwargs):
         if self.pk is None:
            self.set_password(self.password)
@@ -20,4 +19,3 @@ class User(AbstractUser):
             if user.password != self.password:
                 self.set_password(self.password)
         super().save(*args, **kwargs)
-"""
