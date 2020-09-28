@@ -13,7 +13,7 @@ class Privilegios(PermissionRequiredMixin):
         self.login_url = "dbd:error_403"
         return HttpResponseRedirect(reverse_lazy(self.login_url))
 
-class Error403View(LoginRequiredMixin,TemplateView):
+class Error403View(TemplateView):
     template_name = 'errors/error403.html'
 
     def get_context_data(self, **kwargs):

@@ -62,8 +62,8 @@ class ProveedorUpdateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,Update
 
 class ProveedorConsultView(LoginRequiredMixin,Privilegios,UpdateView):
     model = Proveedor
-    permission_required = "dbd.delete_proveedor"
     form_class = ConsultaProveedorForm
+    permission_required = "dbd.change_proveedor"
     context_object_name = 'obja'
     template_name = "proveedor/proveedor_form.html"
     success_url = reverse_lazy('dbd:proveedor_list')
@@ -74,8 +74,9 @@ class ProveedorConsultView(LoginRequiredMixin,Privilegios,UpdateView):
         context['titulo'] = 'Consulta de Proveedor'
         return context
 
-class ProveedorDeleteView(LoginRequiredMixin,DeleteView):
+class ProveedorDeleteView(LoginRequiredMixin,Privilegios,DeleteView):
     model = Proveedor
+    permission_required = "dbd.delete_proveedor"
     context_object_name = 'obj'
     template_name = "proveedor/proveedor_delete.html"
 

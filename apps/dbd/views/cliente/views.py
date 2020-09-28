@@ -13,7 +13,7 @@ from apps.dbd.views.errors.views import Privilegios
 
 class ClienteListView(LoginRequiredMixin,Privilegios,ListView):
     model = Cliente
-    permission_required = "dbd:view_cliente"
+    permission_required = "dbd.view_cliente"
     context_object_name = 'cliente_l'
     template_name = "cliente/cliente_list.html"
     
@@ -24,7 +24,7 @@ class ClienteListView(LoginRequiredMixin,Privilegios,ListView):
 
 class ClienteCreateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,CreateView):
     model = Cliente
-    permission_required = "dbd:add_cliente"
+    permission_required = "dbd.add_cliente"
     form_class = ClienteForm
     context_object_name = 'obj'
     template_name = "cliente/cliente_form.html"
@@ -43,7 +43,7 @@ class ClienteCreateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,CreateVi
 
 class ClienteUpdateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,UpdateView):
     model = Cliente
-    permission_required = "dbd:change_cliente"
+    permission_required = "dbd.change_cliente"
     form_class = ClienteForm
     context_object_name = 'obj'
     template_name = "cliente/cliente_form.html"

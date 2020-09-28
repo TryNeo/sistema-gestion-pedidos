@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'vendor/fonts/circular-std/style.css' %}">
     <link rel="stylesheet" href="{% static 'libs/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
-
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/tejido.ico' %}">
     <link href=" {% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
     
     <script src="{% static 'libs/sweetalert/sweetalert2.all.min.js' %}"></script>
@@ -31,7 +31,7 @@
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="{% url 'dbd:dashboard' %}">
-                ASOPROTESEU</a>
+                ASOPROTOSUE</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -104,10 +104,11 @@
                             <li class="nav-item">
                                 <a class="nav-link {% if request.path == '/dashboard/historial/' %}active{% endif %}" href="{% url 'dbd:historial_list' %}"><i class="fa fa-history" aria-hidden="true"></i>Historial</a>
                             </li>
+                            
+                            {% if request.user.is_staff %}                                
                             <li class="nav-divider">
                                 Seguridad
                             </li>
-                            
                             <li class="nav-item">
                                 <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-lock"></i>Administrar Permisos</a>
                                 <div id="submenu-3" class="collapse submenu" style="">
@@ -125,6 +126,7 @@
                                     </ul>
                                 </div>
                             </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </nav>

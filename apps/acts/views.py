@@ -57,7 +57,7 @@ class UserDeleteView(LoginRequiredMixin,Privilegios,DeleteView):
     
     def post(self,request,pk,*args, **kwargs):
         usuario = User.objects.get(id=pk)
-        usuario.id_active = False
+        usuario.is_active = False
         usuario.save()
         return redirect('dbd:usuario_list')
     

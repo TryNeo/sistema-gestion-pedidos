@@ -29,3 +29,5 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
+STATICFILES_DIRS = (BASE_DIR, "static")
