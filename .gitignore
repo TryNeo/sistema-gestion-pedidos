@@ -296,3 +296,4 @@ apps/acts/migrations/__pycache__/0001_initial.cpython-37.pyc
 apps/dbd/forms/producto/__pycache__/producto_form.cpython-37.pyc
 apps/dbd/views/cliente/__pycache__/views.cpython-37.pyc
 SistemaGestionPedidos/settings.py
+SistemaGestionPedidos/settings/production.py
