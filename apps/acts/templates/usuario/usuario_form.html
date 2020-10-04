@@ -89,6 +89,9 @@ $(function() {
         .done(function(r,textStatus,xhr){ /*preguntaremos si se ejecuto bien*/
             if(xhr.status = 200){ /*preguntaremos por el status */
                 location.reload(true); /*si es True, recargaremos la pagina*/
+                alertify.set('notifier','position','bottom-rigth');
+                alertify.set('notifier','delay', 20);
+                alertify.success('Registro exitoso');
             }
             else{ /*si no es True, le pasamos la function mensaje(); ya creada*/
                 mensaje(textStatus);
