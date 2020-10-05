@@ -19,9 +19,9 @@ class ReportePedidoPdf(LoginRequiredMixin,View):
     def get (self, request,*args,**kwargs):
         try:
             today = timezone.now()
-            pedido = Pedido.objects.all()
-            total_pedido = Pedido.objects.filter().count()
-            total_general = Pedido.objects.all().aggregate(Sum('total'))
+            pedido = Pedido.objects.filter(estado=True)
+            total_pedido = Pedido.objects.filter(estado=True).count()
+            total_general = Pedido.objects.filter(estado=True).aggregate(Sum('total'))
             total_todo = total_general['total__sum']
             context = {
                     'user': self.request.user,

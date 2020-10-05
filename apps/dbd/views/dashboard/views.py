@@ -20,7 +20,7 @@ class DashboardView(LoginRequiredMixin,TemplateView):
         year = datetime.date.today().year
         try:
             for i in range(1,13):
-                total = Pedido.objects.filter(fecha_pedido__year=year,fecha_pedido__month=i).aggregate(r=Coalesce(Sum('total'),0)).get('r')
+                total = Pedido.objects.filter(estado=True,fecha_pedido__year=year,fecha_pedido__month=i).aggregate(r=Coalesce(Sum('total'),0)).get('r')
                 data.append(float(total))
         except:
             pass
@@ -34,8 +34,8 @@ class DashboardView(LoginRequiredMixin,TemplateView):
         context['clientes'] = Cliente.objects.filter(estado=True).count()
         context['proveedor'] = Proveedor.objects.filter(estado=True).count()
         context['pedido'] = Pedido.objects.filter(estado=True).count()
-        context['pedidos'] = Pedido.objects.filter(fecha_crea=datetime.date.today())[:5]
-        context['productos'] = Producto.objects.filter(fecha_crea=datetime.date.today())[:5]
+        context['pedidos'] = Pedido.objects.filter(estado=True,fecha_crea=datetime.date.today())[:5]
+        context['productos'] = Producto.objects.filter(estado=True,fecha_crea=datetime.date.today())[:5]
         context['grahp_ped'] = self.grahp_pedidos()
         context['year'] = datetime.date.today().year
         return context
