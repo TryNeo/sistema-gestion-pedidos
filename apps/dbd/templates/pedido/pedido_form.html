@@ -22,7 +22,7 @@ Creacion Pedido
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-2 col-form-label">Cliente:</label>
                                             <div class="col-sm-10">
-                                              {{ form_enc.cliente }}
+                                            {{ form_enc.cliente }}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -88,15 +88,21 @@ Creacion Pedido
                                                     </thead>
                                                     <tbody>
                                                         {% for item in productos %}
+                                                        
+                                                        {% if item.existencia > 0 %}
                                                         <tr>
-                                                        <td>{{item.id_producto}}
+                                                        <td>
+                                                            {{item.id_producto}}
+                                                        </td>
                                                         <td>{{ item.nombre }}</td>
                                                         <td>{{ item.id_categoria}}</td>
                                                         <td>
                                                             <button type="button" class="btn btn-light btn-circle" onclick="selectProducto({{item.id_producto}},'{{item.nombre}}')"><i class="far fa-hand-pointer"></i></button>
                                                         </td>
                                                         </tr>
+                                                        {% endif %}
                                                         {% endfor %}
+
                                                     </tbody>
                                                 </table>
                                             </div>

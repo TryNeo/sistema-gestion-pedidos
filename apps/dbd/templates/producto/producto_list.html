@@ -51,7 +51,15 @@
                         <td>{{producto.nombre}}</td>
                         <td>{{producto.descripcion}}</td>
                         <td>{{producto.id_categoria}}</td>
-                        <td>{{producto.existencia}}</td>
+                        <td>
+                          
+                          {% if producto.existencia > 0 %}
+                            {{producto.existencia}}
+                          {% else %}
+                          <span class="label label-danger">No stock</span>
+                          {% endif %}
+                              
+                        </td>
                         <td>{{producto.costo}}</td>
                         <td>{% if producto.estado %}
                             <span class="label label-success">Activo</span>

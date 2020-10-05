@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
+from django.db.models import Sum
 
 from django.utils import timezone
 from django.views.generic import View
@@ -20,11 +21,14 @@ class ReportePedidoPdf(LoginRequiredMixin,View):
             today = timezone.now()
             pedido = Pedido.objects.all()
             total_pedido = Pedido.objects.filter().count()
+            total_general = Pedido.objects.all().aggregate(Sum('total'))
+            total_todo = total_general['total__sum']
             context = {
                     'user': self.request.user,
                     'today':today,
                     'datos':{'empresa':'Asoproteseu S.A','telefono':'099-8364-0298','ruc':'1790004104001'},
                     'pedido':pedido,
+                    'total_general':total_todo,
                     'total_pedido':total_pedido
             }
             template = get_template("reportes/pedido_report.html")

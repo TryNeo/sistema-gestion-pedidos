@@ -138,4 +138,80 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-header"></div>
+            <div class="card-body p-0">
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
+            </div>
+            <div class="card-footer text-center">
+                <p>Ganancias totales en el año {{year}} , graficado en meses</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
+
+
+{% block extra_js %}
+<script>
+Highcharts.chart('container', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Reporte de Pedidos del Año {{year}}'
+  },
+  subtitle: {
+    text: 'columnas'
+  },
+  xAxis: {
+    categories: [
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Noviembre',
+      'Diciembre'
+    ],
+    crosshair: true
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Pedidos $'
+    }
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f}$</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: 'Total General:',
+    showInLegend : false,
+    colorByPoint : true,
+    data:{{grahp_ped|safe}}
+  }]
+
+});
+</script>
+{% endblock extra_js %}    

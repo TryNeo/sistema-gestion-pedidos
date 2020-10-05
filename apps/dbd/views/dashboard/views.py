@@ -1,4 +1,6 @@
 import datetime
+from django.db.models import Sum
+from django.db.models.functions import Coalesce
 
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,12 +9,24 @@ from apps.dbd.modelos.estructura_model_catalogo import Categoria
 from apps.dbd.modelos.esctructura_model_cliente import Cliente
 from apps.dbd.modelos.estructura_model_producto import Producto
 from apps.dbd.modelos.estructura_model_proveedor import Proveedor
-from apps.dbd.modelos.estructura_model_pedido import Pedido
-from apps.dbd.modelos.estructura_model_pedido import Pedido
+from apps.dbd.modelos.estructura_model_pedido import Pedido,PedidoItem
 
 class DashboardView(LoginRequiredMixin,TemplateView):
     template_name = 'dashboard/index.html'
     
+    def grahp_pedidos(self):
+        global total
+        data = []
+        year = datetime.date.today().year
+        try:
+            for i in range(1,13):
+                total = Pedido.objects.filter(fecha_pedido__year=year,fecha_pedido__month=i).aggregate(r=Coalesce(Sum('total'),0)).get('r')
+                data.append(float(total))
+        except:
+            pass
+        return data
+
+        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['panel'] = 'Inicio|Asoprotesue'
@@ -22,7 +36,8 @@ class DashboardView(LoginRequiredMixin,TemplateView):
         context['pedido'] = Pedido.objects.filter(estado=True).count()
         context['pedidos'] = Pedido.objects.filter(fecha_crea=datetime.date.today())[:5]
         context['productos'] = Producto.objects.filter(fecha_crea=datetime.date.today())[:5]
-
+        context['grahp_ped'] = self.grahp_pedidos()
+        context['year'] = datetime.date.today().year
         return context
 
 

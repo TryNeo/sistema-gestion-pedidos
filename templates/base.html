@@ -13,11 +13,19 @@
     <link rel="stylesheet" href="{% static 'vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/tejido.ico' %}">
     <link href=" {% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
-    
+
+
     <link rel="stylesheet" href="{% static 'libs/alertifyjs/css/alertify.rtl.css' %}">
     <link rel="stylesheet" href="{% static 'libs/alertifyjs/css/themes/default.rtl.css' %}">
     <script src="{% static 'libs/alertifyjs/alertify.js' %}"></script>
+
+    <script src="{% static 'libs/HighCharts/highcharts.js' %}"></script>
+    <script src="{% static 'libs/HighCharts/modules/variwide.js' %}"></script>
+    <script src="{% static 'libs/HighCharts/modules/exporting.js' %}"></script>
+    <script src="{% static 'libs/HighCharts/modules/export-data.js' %} "></script>
+    <script src="{% static 'libs/HighCharts/modules/accessibility.js' %} "></script>
     
+
     <script src="{% static 'libs/sweetalert/sweetalert2.all.min.js' %}"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     {% block extra_css %}

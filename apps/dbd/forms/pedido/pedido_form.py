@@ -1,6 +1,6 @@
 from django import forms 
 from apps.dbd.modelos.estructura_model_pedido import Pedido,PedidoItem
-
+from apps.dbd.modelos.esctructura_model_cliente import Cliente
 
 
 class PedidoForm(forms.ModelForm):
@@ -23,6 +23,9 @@ class PedidoForm(forms.ModelForm):
         fields = ['num_pedido','cliente','nota','forma_pago','estado_pedido','fecha_pedido','subtotal','iva','total']
 
 class PedidoEditForm(forms.ModelForm):
+    cliente = forms.ModelChoiceField(
+        queryset= Cliente.objects.filter(estado=True))
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
         for field in iter(self.fields):
@@ -41,7 +44,6 @@ class PedidoEditForm(forms.ModelForm):
         exclude = ['subtotal','iva','total','fecha_pedido']
         labels = {
             'num_pedido':'N* Pedido:',
-            'cliente':'Cliente:',
             'nota':'Comentarios o instruciones:',
             'forma_pago':'Forma Pago:',
             'estado_pedido':'Estado Pedido:',
