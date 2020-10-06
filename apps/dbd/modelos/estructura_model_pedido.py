@@ -7,6 +7,7 @@ from apps.dbd.modelos.esctructura_model_cliente import Cliente
 from apps.dbd.modelos.estructura_model_producto import Producto
 from apps.dbd.choices import ESTADO_CHOICES,PAGO_CHOICES
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
 
 class Pedido(models.Model):
     id_pedido =  models.AutoField(primary_key = True)
@@ -76,10 +77,10 @@ def pedido_item_bor(sender,instance,**kwargs):
     
     enc = Pedido.objects.filter(pk=id_pedido).first()
     if enc:
-        subtotal = PedidoItem.objects.filter(pedido=id_pedido).aggregate(Sum('subtotal')) 
-        iva =PedidoItem.objects.filter(pedido=id_pedido).aggregate(Sum('iva')) 
-        enc.subtotal = subtotal["subtotal__sum"] 
-        enc.iva=iva["iva__sum"]
+        subtotal = PedidoItem.objects.filter(pedido=id_pedido).aggregate(r=Coalesce(Sum('subtotal'),0)).get('r')
+        iva =PedidoItem.objects.filter(pedido=id_pedido).aggregate(r=Coalesce(Sum('iva'),0)).get('r')
+        enc.subtotal = float(subtotal)
+        enc.iva=float(iva)
         enc.save()
 
     prod = Producto.objects.filter(pk=id_producto).first()
