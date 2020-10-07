@@ -20,10 +20,8 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-3 col-lg-2 col-form-label text-right">{{form.permissions.label}}</label>
-                        <div class="ms-container" id="ms-keep-order">
-                            <div class="ms-selectable">
-                                {{form.permissions|add_class:'ms-list'}}
-                            </div>
+                        <div class="col-9 col-lg-10">
+                        {{form.permissions|attr:'id:select-rol'}}
                         </div>
                     </div>
                 </div>
@@ -72,5 +70,12 @@ $(function() {
                mensaje('Registro ya existente o ya coincide con otro'); /*llamamos a nuestra funcion para que nos vote un modal de error*/
             });
     });
+
+    $(document).ready(function() {
+            $('#select-rol').select2({
+            placeholder:'Selecione Permiso',
+            
+            });
+        });
 });
 </script>

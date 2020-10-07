@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="col-3 col-lg-5 col-form-label text-right">{{form.id_categoria.label}}</label>
-                        {{form.id_categoria}}
+                        {{form.id_categoria|attr:'id:select-cate'}}
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="col-3 col-lg-3 col-form-label text-right">{{form.costo.label}}</label>
@@ -98,6 +98,12 @@ $(function() {
         }).fail(function(error){ /*si fallase algo,el form nos mandara el mensaje de error de lo que esta mal en el form*/
                mensaje('Registro ya existente o ya coincide con otro'); /*llamamos a nuestra funcion para que nos vote un modal de error*/
             });
+    });
+    
+    $(document).ready(function() {
+        $('#select-cate').select2({
+            theme: 'bootstrap4',
+        });
     });
 });
 </script>

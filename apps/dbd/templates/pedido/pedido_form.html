@@ -22,7 +22,7 @@ Creacion Pedido
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-2 col-form-label" ><b>Cliente:</b></label>
                                             <div class="col-sm-10">
-                                            {{ form_enc.cliente }}
+                                            {{ form_enc.cliente|add_class:'select-clit' }}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -38,15 +38,15 @@ Creacion Pedido
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="id_num_pedido">No. Pedido:</label>
+                                                    <label for="id_num_pedido"><strong>Pedido:</strong></label>
                                                     {{form_enc.num_pedido}}
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="id_estado_pedido">Estado Ped:</label>
+                                                    <label for="id_estado_pedido">Estado Pedido:</label>
                                                     {{form_enc.estado_pedido}}
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="id_forma_pago">Forma Pag:</label>
+                                                    <label for="id_forma_pago">Forma Pago:</label>
                                                     {{form_enc.forma_pago}}
                                                 </div>
                                                 <div class="row">
@@ -76,7 +76,7 @@ Creacion Pedido
                                                 <div class="row">
                                                     <div class="col">
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar Producto <i class="fa fa-plus" aria-hidden="true"></i></button> 
-                                                    <a href="{% url 'dbd:pedido_list' %}" class="btn btn-info btn-circle"><i class="fas fa-undo-alt"></i></a>
+                                                    <a href="{% url 'dbd:pedido_list' %}" class="btn btn-info">Regresar <i class="fas fa-undo-alt"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,7 +93,7 @@ Creacion Pedido
                                                     <div class="col-12">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <table class="table table-striped table-hover dt-responsive table-sm nowrap tbl-productos" style="width:100%">
+                                                                <table class="table table-striped table-hover dt-responsive table-sm tbl-productos display nowrap" cellspacing="0" style="width:100%">
                                                                     <thead>
                                                                         <th>ID</th>
                                                                         <th class="all">Producto</th>
@@ -185,7 +185,7 @@ Creacion Pedido
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-striped table-hover dt-responsive nowrap" style="width:100%">
+                                        <table class="table table-striped table-hover dt-responsive display nowrap" cellspacing="0"  style="width:100%">
                                             <thead>
                                                 <th>Producto</th>        
                                                 <th>Cantidad</th>
@@ -249,7 +249,8 @@ Creacion Pedido
                 "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
-            }
+            },
+            responsive:true,
         });
 
         $('#id_cantidad_detalle,#id_precio_detalle,#id_iva_detalle').change(function(){
@@ -262,6 +263,12 @@ Creacion Pedido
                 mensaje('No ha agregado Producto, Agrege uno');
             }
         });
+
+        $(document).ready(function() {
+            $('.select-clit').select2({
+            theme: 'bootstrap4',
+        });
+    });
     });
 
     function selectProducto(id_producto,nombre){

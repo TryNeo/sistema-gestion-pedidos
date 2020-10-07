@@ -69,19 +69,19 @@
                     <table class="table">
                         <thead class="bg-light">
                             <tr class="border-0">
-                                <th class="border-0">ID</th>
                                 <th class="border-0">Imagen</th>
                                 <th class="border-0">Producto</th>
-                                <th class="border-0">Costo</th>
+                                <th class="border-0">Stock</th>
                             </tr>
                         </thead>
                         <tbody>
                                 {% for pro in productos  %}
                                     <tr>
-                                        <td>{{pro.id_producto}}</td>
                                         <td><div class="m-r-10"><img src="{{pro.get_image}}" class="rounded" width="39"></div></td>
                                         <td>{{pro.nombre|upper}}</td>
-                                        <td>${{pro.costo}}</td>
+                                        <td>
+                                            <span class="label label-success">{{pro.existencia}}</span>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                         </tbody>

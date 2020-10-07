@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
               <div class="table-responsive">
-              <table class="table table-striped" style="width:100%">
+              <table class="table table-striped display nowrap" cellspacing="0"  style="width:100%">
                   <thead>
                     <th>Usuario</th>
                     <th>Creacion/Modificacion - ID</th>
@@ -30,7 +30,7 @@
                   {% for pro in productos %}
                     <tr>
                     <td>{{pro.usuario_crea}}</td>
-                    <td>{{pro.id_producto}}</td>
+                    <td>{{pro.nombre}}</td>
                     <td>{{pro.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{pro.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
@@ -38,7 +38,7 @@
                   {% for cli in clientes  %}
                     <tr>
                     <td>{{cli.usuario_crea}}</td>
-                    <td>{{cli.id_cliente}}</td>
+                    <td>{{cli.nombre}}</td>
                     <td>{{cli.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{cli.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
@@ -46,7 +46,7 @@
                  {% for cate in categorias  %}
                     <tr>
                     <td>{{cate.usuario_crea}}</td>
-                    <td>{{cate.id_categoria}}</td>
+                    <td>{{cate.nombre}}</td>
                     <td>{{cate.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{cate.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
@@ -54,7 +54,7 @@
                 {% for prov in proveedores  %}
                     <tr>
                     <td>{{prov.usuario_crea}}</td>
-                    <td>{{prov.id_proveedor}}</td>
+                    <td>{{prov.nombre}}</td>
                     <td>{{prov.fecha_crea|date:'d/m/Y'}}</td>
                     <td>{{prov.fecha_modifica|date:'d/m/Y'}}</td>
                     </tr>
@@ -62,7 +62,7 @@
                   {% for ped in pedidos  %}
                   <tr>
                   <td>{{ped.usuario_crea}}</td>
-                  <td>{{ped.id_pedido}}</td>
+                  <td>{{ped.num_pedido}}</td>
                   <td>{{ped.fecha_crea|date:'d/m/Y'}}</td>
                   <td>{{ped.fecha_modifica|date:'d/m/Y'}}</td>
                   </tr>
@@ -81,29 +81,30 @@
 $(document).ready(function() {
   $('.table').DataTable({
     "language": {
-      "sProcessing": "Procesando...",
-      "sLengthMenu": "Mostrar _MENU_ registros",
-      "sZeroRecords": "No se encontraron resultados",
-      "sEmptyTable": "Ningún dato disponible en esta tabla",
-      "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-      "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-      "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-      "sInfoPostFix": "",
-      "sSearch": "Buscar:",
-      "sUrl": "",
-      "sInfoThousands": ",",
-      "sLoadingRecords": "Cargando...",
-      "oPaginate": {
-          "sFirst": "<span class='fa fa-angle-double-left'></span>",
-          "sLast": "<span class='fa fa-angle-double-right'></span>",
-          "sNext": "<span class='fa fa-angle-right'></span>",
-          "sPrevious": "<span class='fa fa-angle-left'></span>"
-      },
-      "oAria": {
-          "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-      }
-    }
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún dato disponible en esta tabla",
+        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst": "<span class='fa fa-angle-double-left'></span>",
+            "sLast": "<span class='fa fa-angle-double-right'></span>",
+            "sNext": "<span class='fa fa-angle-right'></span>",
+            "sPrevious": "<span class='fa fa-angle-left'></span>"
+        },
+        "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    },
+    responsive:true
   });
 });
 </script>

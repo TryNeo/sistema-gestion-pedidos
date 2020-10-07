@@ -4,6 +4,8 @@ from apps.dbd.modelos.esctructura_model_cliente import Cliente
 
 
 class PedidoForm(forms.ModelForm):
+    cliente = forms.ModelChoiceField(
+        queryset= Cliente.objects.filter(estado=True))
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
         for field in iter(self.fields):

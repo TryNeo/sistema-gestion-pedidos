@@ -16,8 +16,8 @@ class GroupForm(forms.ModelForm):
         model = Group
         fields = ['name','permissions']
         labels = {
-            'nombre':'name',
-            'permisos':'permissions',
+            'name':'Nombre:',
+            'permissions':'Permisos:',
         }
 
     def clean(self):
