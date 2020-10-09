@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db.models import Sum
 
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -11,7 +11,7 @@ import datetime
 from apps.dbd.modelos.estructura_model_producto import Producto
 from apps.dbd.modelos.esctructura_model_cliente import Cliente
 from apps.dbd.modelos.estructura_model_pedido import Pedido,PedidoItem
-from apps.dbd.forms.pedido.pedido_form import PedidoForm,PedidoEditForm
+from apps.dbd.forms.pedido.pedido_form import PedidoForm,PedidoEditForm,PedidoCreateForm
 from apps.dbd.views.mixin.mixin import MixinFormInvalid
 from apps.dbd.views.errors.views import Privilegios
 
@@ -28,7 +28,27 @@ class PedidoListView(LoginRequiredMixin,Privilegios,ListView):
         context['titulo'] = 'Listado de Pedido'
         return context
 
-class PedidoUpdateView(LoginRequiredMixin,Privilegios,UpdateView):
+class PedidoCreateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,CreateView):
+    model = Pedido
+    permission_required = "dbd.add_pedido"
+    form_class = PedidoCreateForm
+    context_object_name = 'obj'
+    template_name = "pedido/pedido_new.html"
+    
+    def form_valid(self, form):
+        form.instance.fecha_pedido = datetime.datetime.today()
+        form.instance.usuario_crea =  self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('dbd:pedido_edit',args=[self.object.id_pedido])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Creacion de Pedido'
+        return context
+
+class PedidoUpdateView(LoginRequiredMixin,MixinFormInvalid,Privilegios,UpdateView):
     model = Pedido
     permission_required = "dbd.change_pedido"
     form_class = PedidoEditForm

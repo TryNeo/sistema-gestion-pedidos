@@ -43,6 +43,7 @@ urlpatterns = [
 
     #-----------------------PEDIDO---------------------------------# 
     path('pedido/',PedidoListView.as_view(),name="pedido_list"),
+    path('pedido/n',PedidoCreateView.as_view(),name="ped_new"),
     path('pedido/new/',pedidosdetalle,name="pedido_new"),
     path('pedido/edit/<int:id_pedido>',pedidosdetalle,name="pedido_edit"),
     path('pedido/estado/<int:pk>',PedidoUpdateView.as_view(),name="pedido_status"),

@@ -11,7 +11,7 @@ from django.db.models.functions import Coalesce
 
 class Pedido(models.Model):
     id_pedido =  models.AutoField(primary_key = True)
-    num_pedido = models.CharField(max_length=100,default=0)
+    num_pedido = models.CharField(max_length=100,unique=True)
     cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
     nota = models.TextField(max_length=250,blank=True, null=True)
     forma_pago = models.CharField(max_length=50, choices = PAGO_CHOICES, default="Efectivo")

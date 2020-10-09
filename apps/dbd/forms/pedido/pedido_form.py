@@ -24,6 +24,37 @@ class PedidoForm(forms.ModelForm):
         model = Pedido
         fields = ['num_pedido','cliente','nota','forma_pago','estado_pedido','fecha_pedido','subtotal','iva','total']
 
+
+class PedidoCreateForm(forms.ModelForm):   
+    cliente = forms.ModelChoiceField(
+        queryset= Cliente.objects.filter(estado=True))
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update(
+                {
+                    'class':'form-control'
+                }
+            )
+        self.fields['cliente'].empty_label = "Selecione cliente"
+
+    class Meta:
+        model = Pedido
+        fields = ['num_pedido','cliente']
+
+    def clean(self):
+        try:
+            ped = Pedido.objects.get(
+                    num_pedido = self.cleaned_data["num_pedido"]
+                )
+            if not self.instance.pk:
+                raise forms.ValidationError("Registro ya existente")
+            elif self.instance.pk != ped.pk:
+                raise forms.ValidationError("Cambio no Permitido , Ya coincide con otro registro")
+        except Pedido.DoesNotExist:
+            pass
+        return self.cleaned_data 
+
 class PedidoEditForm(forms.ModelForm):
     cliente = forms.ModelChoiceField(
         queryset= Cliente.objects.filter(estado=True))
@@ -50,3 +81,16 @@ class PedidoEditForm(forms.ModelForm):
             'forma_pago':'Forma Pago:',
             'estado_pedido':'Estado Pedido:',
         }
+
+    def clean(self):
+        try:
+            ped = Pedido.objects.get(
+                    num_pedido = self.cleaned_data["num_pedido"]
+                )
+            if not self.instance.pk:
+                raise forms.ValidationError("Registro ya existente")
+            elif self.instance.pk != ped.pk:
+                raise forms.ValidationError("Cambio no Permitido , Ya coincide con otro registro")
+        except Pedido.DoesNotExist:
+            pass
+        return self.cleaned_data 
