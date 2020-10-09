@@ -1,7 +1,7 @@
 from django.db import models
 from apps.acts.models import User #importando la la aplicacion acts con el modelo User
 from apps.dbd.modelos.estructura_model_catalogo import Categoria #importando el modelo de catagalo donde se encuentra categoria
-from SistemaGestionPedidos.settings import MEDIA_URL,STATIC_URL #importando el static url y el media_url
+from SistemaGestionPedidos.settings.base import MEDIA_URL,STATIC_URL #importando el static url y el media_url
 
 #Creamos nuestro modelo producto
 class Producto(models.Model):

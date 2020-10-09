@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import RedirectView
-import SistemaGestionPedidos.settings as setting
+import SistemaGestionPedidos.settings.base as setting
 
 #-------CREACION DE LOGIN------------#
 class LoginFormView(LoginView):
