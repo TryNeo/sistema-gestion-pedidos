@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from SistemaGestionPedidos.settings.base import MEDIA_URL,STATIC_URL
+from SistemaGestionPedidos.settings import MEDIA_URL,STATIC_URL
 
 
 class User(AbstractUser):
