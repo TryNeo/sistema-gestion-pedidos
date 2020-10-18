@@ -207,11 +207,11 @@
             return false;
             }
 
-            function mensaje(msg,icon="error"){
+            function mensaje(msg,icon="error",title='Error! en los datos'){
               Swal.fire({
-                title: 'Error!',
+                title: title,
                 text: msg,
-                icon: icon
+                icon: icon,
               });
             }
 

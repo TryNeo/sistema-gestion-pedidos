@@ -30,7 +30,7 @@ class Pedido(models.Model):
     class Meta:
         verbose_name = 'Pedido'
         verbose_name_plural = 'Pedidos'
-        ordering = ['id_pedido']
+        ordering = ['-num_pedido']
 
     def __str__(self):
         return '{}'.format(self.num_pedido)

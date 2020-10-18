@@ -28,6 +28,7 @@ class ClienteForm(forms.ModelForm):
 
     def clean(self):
         try:
+            super(ClienteForm,self).clean()
             cli = Cliente.objects.get(
                     nombre = self.cleaned_data["nombre"]
                 )

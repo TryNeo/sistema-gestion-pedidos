@@ -38,7 +38,7 @@
 $(function() {
 
     var url = $("form").attr("action"); /*obtenemos el url correspondiente si es edit o new*/
-    
+    var u = "{% url 'dbd:pedido_list' %}";
     var token = jQuery("[name=csrfmiddlewaretoken]").val();/*vamos a leer el csrftoken que tiene el form */
     
     $("form").submit(function(e){
@@ -54,7 +54,7 @@ $(function() {
         })
         .done(function(r,textStatus,xhr){ /*preguntaremos si se ejecuto bien*/
             if(xhr.status = 200){ /*preguntaremos por el status */
-                window.location({% url 'dbd:pedido_list'}) /*si es True, recargaremos la pagina*/
+                window.location = u; /*si es True, recargaremos la pagina*/
                 alertify.set('notifier','position','bottom-rigth');
                 alertify.set('notifier','delay', 20);
                 alertify.success('Registro exitoso');
