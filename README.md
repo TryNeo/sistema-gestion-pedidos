@@ -1,8 +1,9 @@
 # Sistema Gestion de Pedidos 
 Projecto Reto - [3/A]
 
----https://asoprotosue-pedidos.herokuapp.com/
-
+Heroku Page:https://asoprotosue-pedidos.herokuapp.com/
+user : tester
+password : tester
 
 ![Alt text](https://i.imgur.com/zTVAx2u.png)
 ![Alt text](https://i.imgur.com/rrcRYwr.png)
