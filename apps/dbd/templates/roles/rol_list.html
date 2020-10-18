@@ -12,10 +12,13 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
+
+{% if perms.dbd.add_group %}  
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
         <a href="#" onclick="return abrir_modal('{% url 'dbd:rol_new' %}')" class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
 Agregar rol</a>        
     </div>
+{% endif %}
 </div>
 <hr>
 <div class="row">
@@ -35,8 +38,14 @@ Agregar rol</a>
                       <td>{{rol.id}}</td>
                       <td>{{rol.name}}</td>
                       <td>  
+
+                      
+                      {% if perms.dbd.change_group %}
                       <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:rol_edit' rol.id %}')"  ><i class="fa fa-edit"></i></button>
+                      {% endif %}
+                      {% if perms.dbd.delete_group %}
                       <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:rol_delete' rol.id %}')" ><i class="far fa-thumbs-down"></i></button>
+                      {% endif %}
                       </td>
                     </tr>
                   {% endfor %}

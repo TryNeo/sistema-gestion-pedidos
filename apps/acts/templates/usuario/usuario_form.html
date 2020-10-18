@@ -94,11 +94,11 @@ $(function() {
                 {% if obj %}
                 mensaje('Cambio guardado exitosamente','success','Editado! Exitosamente');
                 cerrar_modal();
-                location.reload();
+                setTimeout(function(){location.reload()},3000);
                 {% else %}
                 mensaje('Registro guardado exitoso','success','Registrad! Exitosamente');
                 cerrar_modal();
-                location.reload();
+                setTimeout(function(){location.reload()},3000);
                 {% endif %}
             }
             else{ /*si no es True, le pasamos la function mensaje(); ya creada*/

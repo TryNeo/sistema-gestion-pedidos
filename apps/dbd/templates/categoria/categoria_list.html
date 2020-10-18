@@ -12,10 +12,13 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
+    
+    {% if perms.dbd.add_categoria %}      
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
         <a href="#" onclick="return abrir_modal('{% url 'dbd:categoria_new' %}')" class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
 Agregar Categoria</a>        
     </div>
+    {% endif %}
 </div>
 <hr>
 <div class="row">
@@ -47,8 +50,14 @@ Agregar Categoria</a>
                       <span class="label label-danger">Inactivo</span>
                       {% endif %} </td>
                         <td>
+                            
+                            {% if perms.dbd.change_categoria %}
                             <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:categoria_edit' cate.id_categoria %}')" ><i class="far fa-edit"></i></button>
+                            {% endif %}
+                            
+                            {% if perms.dbd.delete_categoria %}
                             <button type="button" class="btn btn-danger btn-circle"  onclick="return abrir_modal('{% url 'dbd:categoria_delete' cate.id_categoria %}')" ><i class="far fa-thumbs-down"></i></button>
+                            {% endif %}                                                            
                         </td>
                     </tr>
                   {% endfor %}

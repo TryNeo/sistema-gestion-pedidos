@@ -54,8 +54,13 @@
                       {% endif %} </td>
                         <td>
                             <button type="button" class="btn btn-success btn-circle"  onclick="return abrir_modal('{% url 'dbd:proveedor_consult' pro.id_proveedor %}')" ><i class="fa fa-handshake"></i></button>
+                            {% if perms.dbd.change_proveedor %}
                             <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:proveedor_edit' pro.id_proveedor %}')" ><i class="fa fa-edit"></i></button>
+                            {% endif %}
+                            
+                            {% if perms.dbd.delete_proveedor %}
                             <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:proveedor_delete' pro.id_proveedor %}')" ><i class="far fa-thumbs-down"></i></button>
+                            {% endif %}
                         </td>
                     </tr>
                   {% endfor %}

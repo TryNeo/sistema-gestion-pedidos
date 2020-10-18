@@ -12,10 +12,13 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
+    
+    {% if perms.dbd.add_producto %}       
     <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
         <a href="#" onclick="return abrir_modal('{% url 'dbd:producto_new' %}')"  class="btn btn-outline-secondary"><i class="fa fa-plus" aria-hidden="true"></i>
         Agregar Producto</a>
     </div>
+    {% endif %}
     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
         <a href="{% url 'dbd:reporte_producto' %}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"></i>
         Imprimir Productos</a>
@@ -68,8 +71,14 @@
                             {% endif %} 
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:producto_edit' producto.id_producto %}')" ><i class="far fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle"  onclick="return abrir_modal('{% url 'dbd:producto_delete' producto.id_producto %}')" ><i class="far fa-thumbs-down"></i></button>
+                          
+                          {% if perms.dbd.change_producto %}
+                          <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:producto_edit' producto.id_producto %}')" ><i class="far fa-edit"></i></button>                            
+                          {% endif %}
+                          
+                          {% if perms.dbd.delete_producto %}
+                          <button type="button" class="btn btn-danger btn-circle"  onclick="return abrir_modal('{% url 'dbd:producto_delete' producto.id_producto %}')" ><i class="far fa-thumbs-down"></i></button>
+                          {% endif %}                            
                         </td>
                         </tr>
                     {% endfor %}

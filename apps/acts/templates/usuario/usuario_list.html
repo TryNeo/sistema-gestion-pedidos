@@ -3,36 +3,6 @@
 {{titulo}}
 {% endblock title %}
 
-{% block extra_css %}
-<style>
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
-
-</style>
-{% endblock extra_css %}
 
 {% block content %}
 <div class="row">
@@ -41,9 +11,12 @@
             <h2 class="pageheader-title text-center">{{titulo}}</h2>
         </div>
     </div>
+    
+    {% if perms.dbd.add_user %}
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
         <a href="#"  onclick="return abrir_modal('{% url 'dbd:usuario_new' %}')"  class="btn btn-outline-secondary"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar Usuario</a>        
     </div>
+    {% endif %}
 </div>
 <hr>
 <div class="row">
@@ -95,8 +68,14 @@
                       {% endif %}
                       </td>
                       <td>
-                            <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:usuario_edit' us.id %}')" ><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:usuario_delete' us.id %}')" ><i class="far fa-thumbs-down"></i></button>
+                          
+                          {% if perms.dbd.change_user %}
+                          <button type="button" class="btn btn-info btn-circle"  onclick="return abrir_modal('{% url 'dbd:usuario_edit' us.id %}')" ><i class="fa fa-edit"></i></button>
+                          {% endif %}
+                          
+                          {% if perms.dbd.delete_user %}
+                          <button type="button" class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'dbd:usuario_delete' us.id %}')" ><i class="far fa-thumbs-down"></i></button>                            
+                          {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
