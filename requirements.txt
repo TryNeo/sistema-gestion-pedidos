@@ -11,7 +11,7 @@ psycopg2==2.8.6
 PyPDF2==1.27.5
 python-decouple==3.1
 pytz==2020.1
-reportlab==3.5.48
+reportlab==3.5.55
 six==1.15.0
 sqlparse==0.3.1
 static3==0.7.0
